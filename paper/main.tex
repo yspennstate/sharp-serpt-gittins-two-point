@@ -72,11 +72,10 @@ Their proof uses the SOAP (schedule ordered by age-based priority)
 framework of the same authors \cite{SHS18},
 which gives the mean response time of any policy whose priority is a
 function of the age. Scully conjectures the factor $2$ both for M-SERPT
-and for SERPT \cite[Chapter~11]{Scu22}. He also shows that the same
-three-point family, with the small parameter tied to the load, drives the ratio
-to $2$ for SERPT as well, so that $2$ would be tight for both policies, and
-that for each fixed member of the family the ratio tends to $1$ as
-$\rho\to1$ \cite[Section~11.3]{Scu22}. For the multiserver variant
+and for SERPT \cite[Chapter~11]{Scu22}, and computes that the same
+three-point family, with the small parameter tied to the load, drives the
+ratio to $2$ for SERPT as well, so that $2$ would be tight for both policies
+\cite[Section~11.3]{Scu22}. For the multiserver variant
 M-SERPT-$k$ in heavy traffic, Scully, Grosof and Harchol-Balter proved the
 factor $2$ for size laws that are bounded or satisfy the tail conditions
 stated there \cite[Theorem~3.2]{SGH21}.
@@ -269,9 +268,9 @@ served in FCFS order ahead of everything else. A long job then has a middle
 stage of length $d-w>0$, which fresh arrivals preempt. Last comes a
 protected tail of length $w$, which once begun runs to completion.
 Two long jobs in their middle stages are served in order of arrival. Under
-M-SERPT both have rank $d$ and the tie goes to the earlier arrival; under
-Gittins and SERPT the earlier arrival is older and so has the smaller rank
-$b-u$. This is the policy $\pi_w$ of the introduction.
+M-SERPT both have rank $d$ and the tie goes to the earlier arrival. Under
+Gittins and SERPT the earlier arrival is at least as old, so its rank $b-u$
+is no larger, and at equal ages the tie goes to the earlier arrival. This is the policy $\pi_w$ of the introduction.
 
 \begin{lemma}\label{lem:means}
 Let $0\le w<d$ and $r_0\ge0$. Let $r$ be a rank function with $r(u)\le r(0)=r_0$
@@ -539,7 +538,8 @@ Syst. \textbf{4} (2020), no.~1, Art.~11, 1--29, doi:10.1145/3379477.
 
 \bibitem{Scu22}
 Z.~Scully, \emph{A new toolbox for scheduling theory}, Ph.D. thesis,
-Carnegie Mellon University, technical report CMU-CS-22-132, 2022.
+Carnegie Mellon University, technical report CMU-CS-22-132, 2022; revised
+June 2025, \url{https://ziv.codes/pdf/scully-thesis.pdf}.
 
 \bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain}, public repository, 2026, \url{https://github.com/yspennstate/math-brain-public/tree/8c9a6bd478c4ec4082347151b7ae16db50c917dd}.
 

@@ -22,7 +22,10 @@ The job size takes the value a with probability p and b > a with probability 1 -
   - the boundary formula and the SERPT denominator.
 - `exact_results.txt`, `identities_output.txt` and `simulation_results.jsonl` are the outputs of `verify.py exact`, `identities_check.py` and `verify.py simulate`.
 
-The simulations agree with the closed forms to within simulation error. In the near-extremal case the theoretical M-SERPT/Gittins ratio is 1.06017 and the observed ratio is 1.06007. At the transition p(b - a) = a both the theoretical and the observed ratios are 1.
+In all five cases the simulated mean response times of M-SERPT, Gittins and SERPT are within 0.7 per cent of the closed forms. The ratios agree more closely, because the three policies are simulated on the same arrivals:
+- In the M-SERPT near-extremal case the M-SERPT/Gittins ratio is 1.06017 in theory and 1.06007 in simulation.
+- In the SERPT near-extremal case (b = 1001) the SERPT/Gittins ratio is 1.04259 in theory and 1.04225 in simulation.
+- At the transition p(b - a) = a both ratios are 1.
 
 ## Requirements
 
