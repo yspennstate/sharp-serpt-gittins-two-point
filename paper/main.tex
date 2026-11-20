@@ -233,9 +233,11 @@ order of arrival.
 The condition $pd\le a$ says that $X$ is new better than used in
 expectation, that is, $\E[X-u\mid X>u]\le\E X$ for all $u$. By the
 lemma and the optimality of Gittins \cite[Theorem~V.1]{SH21}, FCFS
-minimizes the mean response time for these two-point laws. Scully,
-Harchol-Balter and Scheller-Wolf note that this holds for every size law
-with the property \cite[Section~1]{SHS20}. For such laws Gittins and
+minimizes the mean response time for these two-point laws. Righter,
+Shanthikumar and Yamazaki proved more: for service times that are new
+better than used in expectation, FCFS minimizes the mean sojourn time
+among work-conserving policies that do not use the future \cite{RSY90}
+(see also \cite[Section~1]{SHS20}). For such laws Gittins and
 M-SERPT both coincide with FCFS \cite[Section~8.2]{SHS20}.
 
 We now recall the SOAP formula \cite[Theorem~5.5]{SHS18} in the form we
@@ -522,7 +524,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 
 \section*{Declaration of generative AI and AI-assisted technologies}
 
-This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The optimality of the Gittins policy in the M/G/1 queue is proved by Scully and Harchol-Balter~\cite[Theorem~V.1]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is recalled, with its sources, by Scully, Harchol-Balter and Scheller-Wolf~\cite[Section~1]{SHS20}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The optimality of the Gittins policy in the M/G/1 queue is proved by Scully and Harchol-Balter~\cite[Theorem~V.1]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data and code availability}
 
@@ -533,6 +535,11 @@ same repository holds \texttt{simulation\_results.jsonl}, which compares
 the exact means with discrete-event simulations at five parameter points.
 
 \begin{thebibliography}{99}
+
+\bibitem{RSY90}
+R.~Righter, J.~G. Shanthikumar and G.~Yamazaki, \emph{On extremal service
+disciplines in single-stage queueing systems}, J. Appl. Probab.
+\textbf{27} (1990), no.~2, 409--416, doi:10.2307/3214660.
 
 \bibitem{SGH21}
 Z.~Scully, I.~Grosof and M.~Harchol-Balter, \emph{Optimal multiserver
