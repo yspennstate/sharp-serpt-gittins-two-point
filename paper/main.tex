@@ -64,14 +64,14 @@ remaining size, and Scully, Harchol-Balter and Scheller-Wolf
 running maximum of the SERPT rank over the ages already reached. They bounded
 the ratio of the mean response time of M-SERPT to that of Gittins by a
 function of the load $\rho=\lambda\E X<1$ that is at most $5$, for every size
-law \cite[Theorem~5.1]{SHS20}, and gave a family of three-point
+law \cite[Theorem~5.1]{SHS20}. They also gave a family of three-point
 laws along which the ratio tends to $2$ \cite[Section~7]{SHS20}.
 They conjecture that $2$ is the right factor \cite[Conjecture~8.1]{SHS20}.
 Their proof uses the SOAP (schedule ordered by age-based priority)
 framework of the same authors \cite{SHS18},
 which gives the mean response time of any policy whose rank is a
 function of the age. Scully conjectures the factor $2$ both for M-SERPT
-and for SERPT \cite[Chapter~11]{Scu22}, and computes that the same
+and for SERPT \cite[Chapter~11]{Scu22}. Scully also computes that the same
 three-point family, with the small parameter tied to the load, drives the
 ratio to $2$ for SERPT as well, so that $2$ would be tight for both policies
 \cite[Section~11.3]{Scu22}. For the multiserver variant
@@ -94,10 +94,10 @@ time in steady state under Gittins, M-SERPT and SERPT; ties in rank are
 broken in first-come first-served (FCFS) order. If $p(b-a)\le a$, the
 three policies serve jobs in FCFS order and the ratio is $1$
 (Lemma~\ref{lem:fcfs}). Suppose $p(b-a)>a$. For $0\le w<b-a$ let $\pi_w$
-be the policy that serves the first $a$ units of every job in FCFS order
-ahead of all other work except a protected tail already begun, gives the
-remaining service of long jobs in order of arrival, and lets the last $w$
-units of a long job, once begun, run to completion. Gittins, M-SERPT and
+be the following policy. It serves the first $a$ units of every job in
+FCFS order, ahead of all other work except a protected tail already begun.
+It gives the remaining service of long jobs in order of arrival, and it
+lets the last $w$ units of a long job, once begun, run to completion. Gittins, M-SERPT and
 SERPT schedule jobs exactly as $\pi_w$ does with $w=a/p$, $w=0$ and
 $w=\E X$ (Section~\ref{sec:means}), so one computation with the SOAP
 formula \cite[Theorem~5.5]{SHS18} compares all three. Their mean response
@@ -143,14 +143,14 @@ attained.
 
 Numerically $t_*=0.45061\,45807\ldots$ and $p_*=0.65713\,91408\ldots$, and
 along the family of Theorem~\ref{thm:ms} the load tends to $t_*/p_*=0.68572\,17182\ldots$.
-The extremal parameters thus have a moderate load and lie at the boundary of the
-region where FCFS is optimal: for $p(b-a)\le a$ all three policies serve
-jobs in FCFS order (Lemma~\ref{lem:fcfs}), so along this family
-the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
-$p(b-a)=a$. The jump comes from tie breaking: at $p(b-a)=a$ the M-SERPT
+The extremal parameters thus have a moderate load and lie at the
+boundary of the region where FCFS is optimal. For $p(b-a)\le a$ all three
+policies serve jobs in FCFS order (Lemma~\ref{lem:fcfs}). Along this
+family the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
+$p(b-a)=a$. The jump comes from tie breaking. At $p(b-a)=a$ the M-SERPT
 rank of a long job past age $a$ equals $\mu$, the rank of a waiting job,
-so FCFS tie breaking lets it finish, while for $p(b-a)>a$ its rank exceeds
-$\mu$ and every arrival preempts it (compare Remark~\ref{rem:ties}).
+so FCFS tie breaking lets it finish. For $p(b-a)>a$ its rank exceeds
+$\mu$, and every arrival preempts it (compare Remark~\ref{rem:ties}).
 
 \begin{theorem}\label{thm:s}
 Over the same parameters,
@@ -173,8 +173,8 @@ Section~\ref{sec:means} computes the conditional mean response times and
 proves \eqref{eq:regret-intro}. Sections~\ref{sec:ms} and~\ref{sec:s}
 prove Theorems~\ref{thm:ms} and~\ref{thm:s}. Section~\ref{sec:remarks}
 collects remarks on heavy traffic, ties and three-point sizes, and
-Section~\ref{sec:computations} lists the steps done by exact computer
-algebra: the derivatives and the resultant in the proof of
+Section~\ref{sec:computations} lists the steps done by computer. These
+are the derivatives and the resultant in the proof of
 Theorem~\ref{thm:ms}, the polynomial identities in the proof of
 Theorem~\ref{thm:s}, and the interval enclosure of $C_2$.
 
@@ -224,10 +224,10 @@ order of arrival.
 The condition $pd\le a$ says that $X$ is new better than used in
 expectation, that is, $\E[X-u\mid X>u]\le\E X$ for all $u$. By the
 lemma and the optimality of Gittins \cite[Theorem~V.1]{SH21}, FCFS
-minimizes the mean response time for these two-point laws; Scully,
+minimizes the mean response time for these two-point laws. Scully,
 Harchol-Balter and Scheller-Wolf note that this holds for every size law
-with the property \cite[Section~1]{SHS20}, and that for such laws Gittins
-and M-SERPT both coincide with FCFS \cite[Section~8.2]{SHS20}.
+with the property \cite[Section~1]{SHS20}. For such laws Gittins and
+M-SERPT both coincide with FCFS \cite[Section~8.2]{SHS20}.
 
 We now recall the SOAP formula \cite[Theorem~5.5]{SHS18} in the form we
 need. Fix a rank function $r$ and a job size $x$, and let
@@ -235,7 +235,7 @@ $r^{\mathrm{worst}}(u)=\sup_{u\le v<x}r(v)$ be the worst future rank of a
 job of size $x$ at age $u$. For a rank $\theta$, the \emph{new work}
 $c^{\mathrm{new}}[\theta]$ of a job is the service it receives before its
 rank first becomes at least $\theta$, and $\rho^{\mathrm{new}}[\theta]
-=\lambda\E c^{\mathrm{new}}[\theta]$; this is the work that a later arrival
+=\lambda\E c^{\mathrm{new}}[\theta]$. This is the work that a later arrival
 can do ahead of a job whose worst future rank is $\theta$. The \emph{old
 work} of a job relative to $\theta$ consists of the intervals of age on
 which its rank is at most $\theta$. The first is the original interval
@@ -491,7 +491,9 @@ $N/D$ and the resultant \eqref{eq:res}, and for the polynomial identities
 behind $\mathcal D$, and rational interval arithmetic for the enclosure
 of $C_2$. The identities are verified over the integers by
 \texttt{verify.py} and \texttt{identities\_check.py} in the repository
-named under Data and code availability. For the enclosure of $C_2$, $F$
+named under Data and code availability. They run under Python~3 with
+SymPy~1.14 \cite{SymPy} for the symbolic steps and the standard
+\texttt{fractions} module for the rational arithmetic. For the enclosure of $C_2$, $F$
 changes sign between two rationals at distance $2\cdot10^{-30}$, which
 therefore contain $t_*$. For every $t$ between them, $K$ changes sign in
 $p$ between two rationals at distance $2\cdot10^{-25}$, which therefore
@@ -553,6 +555,16 @@ Syst. \textbf{4} (2020), no.~1, Art.~11, 1--29, doi:10.1145/3379477.
 Z.~Scully, \emph{A new toolbox for scheduling theory}, Ph.D. thesis,
 Carnegie Mellon University, technical report CMU-CS-22-132, 2022; revised
 June 2025, \url{https://ziv.codes/pdf/scully-thesis.pdf}.
+
+\bibitem{SymPy}
+A.~Meurer, C.~P.~Smith, M.~Paprocki, O.~\v{C}ert\'{\i}k,
+S.~B.~Kirpichev, M.~Rocklin, A.~Kumar, S.~Ivanov, J.~K.~Moore, S.~Singh,
+T.~Rathnayake, S.~Vig, B.~E.~Granger, R.~P.~Muller, F.~Bonazzi,
+H.~Gupta, S.~Vats, F.~Johansson, F.~Pedregosa, M.~J.~Curry,
+A.~R.~Terrel, \v{S}.~Rou\v{c}ka, A.~Saboo, I.~Fernando, S.~Kulal,
+R.~Cimrman and A.~Scopatz,
+\emph{SymPy: symbolic computing in Python}, PeerJ Comput. Sci.
+\textbf{3} (2017), e103, doi:10.7717/peerj-cs.103.
 
 \bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain}, public repository, 2026, \url{https://github.com/yspennstate/math-brain-public/tree/8c9a6bd478c4ec4082347151b7ae16db50c917dd}.
 
