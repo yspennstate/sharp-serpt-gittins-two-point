@@ -205,9 +205,8 @@ Since $\lambda a\le\rho<1$, all of $A$, $1-\rho$ and $B$ are positive.
 $r_{\mathrm S}(u)=\E[X-u\mid X>u]$~\cite[Definition~2.2]{SHS20}, so that $r_{\mathrm S}(u)=\mu-u$ for
 $0\le u<a$ and $r_{\mathrm S}(u)=b-u$ for $a\le u<b$. \emph{M-SERPT} uses
 $r_{\mathrm{MS}}(u)=\max_{0\le v\le u}r_{\mathrm S}(v)$
-\cite[Definition~2.4]{SHS20}. The \emph{Gittins} rank is the reciprocal of the
-Gittins index; in the notation of conditional expectations
-\cite[Definition~2.1]{SHS20} reads
+\cite[Definition~2.4]{SHS20}. The \emph{Gittins} rank~\cite[Definition~2.1]{SHS20}, the reciprocal of
+the Gittins index, is, written with conditional expectations,
 \[
 r_{\mathrm G}(u)=\inf_{v>u}\frac{\E[\min(X,v)-u\mid X>u]}{\PP(X\le v\mid X>u)} .
 \]
@@ -220,7 +219,8 @@ Since $\E[X-u\mid X>u]$ equals $\mu-u$ for $0\le u<a$ and $b-u$ for
 $a\le u<b$, the law of $X$ is new better than used in expectation, that
 is, $\E[X-u\mid X>u]\le\E X$ for all $u$, exactly when $d\le\mu$, that is,
 when $pd\le a$. For laws with this property Gittins and M-SERPT serve jobs
-in FCFS order~\cite[Section~8.2]{SHS20}. The following lemma gives a
+in FCFS order; this is recalled in~\cite[Section~8.2]{SHS20}, where it is
+credited to Aalto, Ayesta and Righter. The following lemma gives a
 direct proof for two-point laws and includes SERPT.
 
 \begin{lemma}\label{lem:fcfs}
@@ -241,8 +241,8 @@ order of arrival.
 \end{proof}
 
 By the lemma and the optimality of Gittins \cite[Theorem~V.1]{SH21}, FCFS
-minimizes the mean response time for these two-point laws among policies
-that do not use the sizes of the jobs. Righter, Shanthikumar and Yamazaki
+minimizes the mean response time for these two-point laws among the
+policies considered here. Righter, Shanthikumar and Yamazaki
 proved more: for size laws that are new better than used in expectation,
 FCFS minimizes the mean response time among work-conserving policies
 that do not use the future \cite{RSY90} (see also \cite[Section~1]{SHS20}).
