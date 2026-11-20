@@ -109,8 +109,8 @@ Section~\ref{sec:means} by a rank function, splits every job into stages.
 The \emph{initial stage}, the first $a$ units of service, is served in
 FCFS order. The last $w$ units of a long job form its \emph{protected
 tail}, which once begun runs to completion. The \emph{middle stage}
-between them, of length $b-a-w$, is given to long jobs in order of
-arrival, and a later arrival preempts it. The initial stage of a job is
+between them, of length $b-a-w$, is given to long jobs in FCFS
+order, and a later arrival preempts it. The initial stage of a job is
 served ahead of all other work except a protected tail already begun. Gittins, M-SERPT and
 SERPT schedule jobs exactly as $\pi_w$ does with $w=a/p$, $w=0$ and
 $w=\E X$ (Section~\ref{sec:means}), so one computation with the SOAP
@@ -239,7 +239,7 @@ Gittins and SERPT ranks are nonincreasing from $\mu$ on $[0,a)$ and equal
 $b-u\le d\le\mu$ on $[a,b)$. A job that has started therefore never has larger rank
 than a job that has not, and waiting jobs all have rank $\mu$. With FCFS
 tie breaking, a job once started runs to completion, and jobs start in
-order of arrival.
+FCFS order.
 \end{proof}
 
 By the lemma and the optimality of Gittins \cite[Theorem~V.1]{SH21}, FCFS
@@ -297,7 +297,7 @@ A job therefore has three stages. The initial stage has length $a$ and is
 served in FCFS order ahead of every long job in its middle stage. A long job then has a middle
 stage of length $d-w>0$, which later arrivals preempt. Last comes a
 protected tail of length $w$, which once begun runs to completion.
-Two long jobs in their middle stages are served in order of arrival. Under
+Two long jobs in their middle stages are served in FCFS order. Under
 M-SERPT both have rank $d$ and the tie goes to the earlier arrival. Under
 Gittins and SERPT the earlier arrival is at least as old, so its rank $b-u$
 is no larger, and at equal ages the tie goes to the earlier arrival. For $0\le w<d$ let $\pi_w$ be the policy with the rank function equal to
@@ -494,15 +494,16 @@ ages can have equal rank. For
 deterministic sizes $X=1$, the M-SERPT rank is constant, so every job has
 the same rank. If ties are broken by preemptive last-come first-served,
 the mean response time is $1/(1-\rho)$, the mean length of a busy period
-started by one job. Gittins has rank $1-u$, strictly decreasing, and serves
-in FCFS order, with mean response time $1+\rho/(2(1-\rho))$. The ratio is
+started by one job. Gittins has rank $1-u$, strictly decreasing, so it never preempts
+the job in service, and under either tie rule its mean response time is
+$1+\rho/(2(1-\rho))$. The ratio is
 $2/(2-\rho)$, which equals $4/3$ at $\rho=1/2$, already larger than $C_2$,
 and tends to $2$ as $\rho\to1$. The same holds inside the class of
 Theorems~\ref{thm:ms} and~\ref{thm:s}. If $pd\le a$, the M-SERPT rank is the
 constant $\mu$ on $[0,b)$ (proof of Lemma~\ref{lem:fcfs}), so with
 preemptive last-come first-served ties its mean response time is
-$\mu/(1-\rho)$, while Gittins serves in FCFS order with mean response time
-$\mu+\lambda\E X^2/(2(1-\rho))$. As $b\downarrow a$ at fixed $\rho$ the
+$\mu/(1-\rho)$, while Gittins never preempts the job in service and has mean response
+time $\mu+\lambda\E X^2/(2(1-\rho))$ under either tie rule. As $b\downarrow a$ at fixed $\rho$ the
 ratio tends to $2/(2-\rho)$.
 \end{remark}
 
