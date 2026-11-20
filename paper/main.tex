@@ -34,12 +34,12 @@
 In the M/G/1 queue with unknown job sizes, the Gittins policy minimizes
 the mean response time, and the simpler policy M-SERPT (monotonic
 shortest expected remaining processing time) is known to be within a
-factor $5$ of it. We determine the worst ratio exactly when the
-job size takes two values. Over all two-point size laws and all
+factor $5$ of it. We determine the supremum of this ratio when the
+job size takes two values. Over all two-point laws and all
 loads below one, the supremum of the ratio of the mean response time of
 M-SERPT to that of Gittins is $C_2=1.06017342\ldots$, an algebraic number
 defined through the root in $(0,1)$ of $t^5+4t^4-20t^3+12t^2+16t-8$. It
-is approached at a load of about $0.686$, as the long size decreases to
+is approached at a load of about $0.686$, as the larger of the two sizes decreases to
 the largest value at which first-come first-served order is optimal, and it is
 not attained. For SERPT the corresponding supremum is
 $(7-2\sqrt2)/4=1.04289\ldots$. Both results rest on an exact formula for
@@ -64,29 +64,38 @@ remaining size, and Scully, Harchol-Balter and Scheller-Wolf
 running maximum of the SERPT rank over the ages already reached. They bounded
 the ratio of the mean response time of M-SERPT to that of Gittins by a
 function of the load $\rho=\lambda\E X<1$ that is at most $5$, for every size
-law \cite[Theorem~5.1]{SHS20}. They also gave a family of three-point
-laws along which the ratio tends to $2$ \cite[Section~7]{SHS20}.
-They conjecture that $2$ is the right factor \cite[Conjecture~8.1]{SHS20}.
-Their proof uses the SOAP (schedule ordered by age-based priority)
-framework of the same authors \cite{SHS18},
-which gives the mean response time of any policy whose rank is a
-function of the age. Scully conjectures the factor $2$ both for M-SERPT
+law \cite[Theorem~5.1]{SHS20}. The proof uses the SOAP (schedule ordered
+by age-based priority) framework of the same authors \cite{SHS18}, which
+gives the mean response time of any policy whose rank is a function of the
+age. They also give a family of three-point laws along which the ratio
+tends to $2$ \cite[Section~7]{SHS20}, and they conjecture that the
+supremum of the ratio over all size laws is $2$
+\cite[Conjecture~8.1]{SHS20}. Scully conjectures the factor $2$ both for M-SERPT
 and for SERPT \cite[Chapter~11]{Scu22}. Scully also computes that the same
-three-point family, with the small parameter tied to the load, drives the
+three-point family, with its parameter chosen as a function of the load, drives the
 ratio to $2$ for SERPT as well, so that $2$ would be tight for both policies
 \cite[Section~11.3]{Scu22}. For the multiserver variant
 M-SERPT-$k$ in heavy traffic, Scully, Grosof and Harchol-Balter proved the
-factor $2$ for size laws that are bounded or satisfy the tail conditions
-stated there \cite[Theorem~3.2]{SGH21}.
+factor $2$ under conditions on the tail of the size law
+\cite[Theorem~3.2]{SGH21}.
 
 In the single-server M/G/1 queue the gap between the upper bound $5$ and
-the lower bound $2$ remains open, and the Gittins rank, which enters every
-comparison, has no closed form in general. For two-point job sizes it has one.
-The SOAP formula gives the mean response time of any one policy at any
-one size law; Scully, Harchol-Balter and Scheller-Wolf evaluate it on
-the law that takes the sizes $2$ and $14$ with equal
-probability \cite[Section~6.4]{SHS18}. A sharp constant asks for more,
-the supremum of the ratio over all two-point laws and all loads. Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$
+the lower bound $2$ remains open. The Gittins rank has no closed form in
+general; for two-point laws it has one. The SOAP formula gives the mean
+response time of one policy at one size law, and Scully, Harchol-Balter and
+Scheller-Wolf evaluate it on the law that takes the sizes $2$ and $14$ with
+equal probability \cite[Section~6.4]{SHS18}. The three policies have
+different rank functions, so the formula gives a separate expression in the
+size law and the load for each, and the supremum of the ratio over all
+two-point laws and all loads is that of a quotient of two such expressions
+over four parameters. For two-point laws the three policies belong to one
+family of policies whose mean response time is a quadratic in one
+parameter, and this reduces the problem to a maximization in two
+variables. The supremum for M-SERPT is $C_2=1.0602\ldots$ (Theorem~\ref{thm:ms}), so the
+ratio $2$ of the three-point family of \cite[Section~7]{SHS20} is not
+approached by two-point laws.
+
+Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$
 with $0<a<b$ and $0<p<1$; a job of size $a$ is \emph{short} and a job of
 size $b$ is \emph{long}. Write
 $T_{\mathrm G}$, $T_{\mathrm{MS}}$ and $T_{\mathrm S}$ for the response
@@ -94,22 +103,25 @@ time in steady state under Gittins, M-SERPT and SERPT; ties in rank are
 broken in first-come first-served (FCFS) order. If $p(b-a)\le a$, the
 three policies serve jobs in FCFS order and the ratio is $1$
 (Lemma~\ref{lem:fcfs}). Suppose $p(b-a)>a$. For $0\le w<b-a$ let $\pi_w$
-be the following policy. It serves the first $a$ units of every job in
-FCFS order, ahead of all other work except a protected tail already begun.
-It gives the remaining service of long jobs in order of arrival, and it
-lets the last $w$ units of a long job, once begun, run to completion. Gittins, M-SERPT and
+be the following policy. The first $a$ units of every job are served in
+FCFS order. The last $w$ units of a long job form its protected tail, which
+once begun runs to completion. The service in between, of length $b-a-w$,
+is given to long jobs in order of arrival, and a new arrival preempts it.
+The first $a$ units of a job are served ahead of all other work except a
+protected tail already begun. Gittins, M-SERPT and
 SERPT schedule jobs exactly as $\pi_w$ does with $w=a/p$, $w=0$ and
 $w=\E X$ (Section~\ref{sec:means}), so one computation with the SOAP
 formula \cite[Theorem~5.5]{SHS18} compares all three. Their mean response
-times are values of one quadratic in $w$, least at the Gittins value
+times are values of one quadratic in $w$, least at $w=a/p$
 (Proposition~\ref{prop:regret}):
 \begin{equation}\label{eq:regret-intro}
 \E T(\pi_w)-\E T_{\mathrm G}=\frac{\lambda pq}{2(1-\lambda a)}
 \Bigl(w-\frac ap\Bigr)^2 .
 \end{equation}
 For M-SERPT the excess $\lambda qa^2/(2p(1-\lambda a))$ does not depend on
-$b$, while $\E T_{\mathrm G}$ increases with $b$, so the worst case is the
-limit $p(b-a)\downarrow a$. There the ratio becomes $1+f(p,t)$ with
+$b$, while for fixed $a$, $p$ and $\lambda$ the mean $\E T_{\mathrm G}$
+increases with $b$, so the supremum is approached in the limit
+$p(b-a)\downarrow a$. There the ratio becomes $1+f(p,t)$ with
 $t=\lambda a$, where
 \begin{equation}\label{eq:f}
 f(p,t)=\frac{t(1-p)(p-t)}{(1-t)\bigl(2p-(1-p+p^2)t\bigr)},
@@ -119,12 +131,12 @@ maximization of $f$ to the quintic
 \begin{equation}\label{eq:F}
 F(t)=t^5+4t^4-20t^3+12t^2+16t-8 .
 \end{equation}
-For SERPT the excess and
+For SERPT, at fixed $p$ and $\rho$, the excess and
 $\E T_{\mathrm G}$ grow at the same rate in $b$, and the supremum is the
 limit $b/a\to\infty$.
 
 \begin{theorem}\label{thm:ms}
-The polynomial $F$ of \eqref{eq:F} has exactly one root $t_*$ in
+Let ties in rank be broken in FCFS order. The polynomial $F$ of \eqref{eq:F} has exactly one root $t_*$ in
 $(0,1)$. With $f$ as in \eqref{eq:f}, let
 \[
 p_*=\frac{t_*(1-t_*)+\sqrt{t_*^2(1-t_*)^2+t_*(2-t_*^2)}}{2-t_*^2}
@@ -135,7 +147,7 @@ Then
 \sup\frac{\E T_{\mathrm{MS}}}{\E T_{\mathrm G}}=C_2
 =1.06017\,34219\,12767\,96060\,4515\ldots,
 \]
-the supremum taken over all $a<b$, $p\in(0,1)$ and $\lambda>0$ with
+the supremum taken over all $0<a<b$, $p\in(0,1)$ and $\lambda>0$ with
 $\rho<1$. It is approached with $a=1$, $p=p_*$, $\lambda=t_*$ and
 $b=1+(1+\varepsilon)/p_*$ as $\varepsilon\downarrow0$, and it is not
 attained.
@@ -144,13 +156,11 @@ attained.
 Numerically $t_*=0.45061\,45807\ldots$ and $p_*=0.65713\,91408\ldots$, and
 along the family of Theorem~\ref{thm:ms} the load tends to $t_*/p_*=0.68572\,17182\ldots$.
 The extremal parameters thus have a moderate load and lie at the
-boundary of the region where FCFS is optimal. For $p(b-a)\le a$ all three
-policies serve jobs in FCFS order (Lemma~\ref{lem:fcfs}). Along this
-family the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
+boundary of the region where FCFS is optimal. Along this family the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
 $p(b-a)=a$. The jump comes from tie breaking. At $p(b-a)=a$ the M-SERPT
-rank of a long job past age $a$ equals $\mu$, the rank of a waiting job,
+rank of a long job past age $a$ equals $\E X$, the rank of a waiting job,
 so FCFS tie breaking lets it finish. For $p(b-a)>a$ its rank exceeds
-$\mu$, and every arrival preempts it (compare Remark~\ref{rem:ties}).
+$\E X$, and every arrival preempts it (compare Remark~\ref{rem:ties}).
 
 \begin{theorem}\label{thm:s}
 Over the same parameters,
@@ -163,7 +173,7 @@ $b/a\to\infty$, and it is not attained.
 \end{theorem}
 
 FCFS tie breaking is the convention of \cite[Section~2.2]{SHS18} and
-\cite[Section~2.1]{SHS20}, and the tie rule changes the answer: for
+\cite[Section~2.1]{SHS20}, and tie breaking changes the answer: for
 deterministic sizes, M-SERPT with preemptive last-come first-served tie
 breaking has ratio $2/(2-\rho)$ to Gittins (Remark~\ref{rem:ties}), which
 is $4/3$ at $\rho=1/2$.
@@ -172,11 +182,10 @@ Section~\ref{sec:model} recalls the policies and the SOAP formula.
 Section~\ref{sec:means} computes the conditional mean response times and
 proves \eqref{eq:regret-intro}. Sections~\ref{sec:ms} and~\ref{sec:s}
 prove Theorems~\ref{thm:ms} and~\ref{thm:s}. Section~\ref{sec:remarks}
-collects remarks on heavy traffic, ties and three-point sizes, and
-Section~\ref{sec:computations} lists the steps done by computer. These
-are the derivatives and the resultant in the proof of
-Theorem~\ref{thm:ms}, the polynomial identities in the proof of
-Theorem~\ref{thm:s}, and the interval enclosure of $C_2$.
+collects remarks on heavy traffic and ties, and
+Section~\ref{sec:computations} gives the computer algebra and the
+interval arithmetic behind the proofs of Theorems~\ref{thm:ms}
+and~\ref{thm:s} and the digits of $C_2$.
 
 \section{Policies and the SOAP formula}\label{sec:model}
 
@@ -274,13 +283,14 @@ On $[a,b)$ the rank is nonincreasing; it exceeds $r_0$ up to some age $b-w$
 and is at most $r_0$ from then on. Here $r_0=\mu$ and $w=0$ for M-SERPT,
 $r_0=h$ and $w=h$ for Gittins, and $r_0=\mu$ and $w=\mu$ for SERPT.
 A job therefore has three stages. The initial stage has length $a$ and is
-served in FCFS order ahead of everything else. A long job then has a middle
+served in FCFS order ahead of every long job in its middle stage. A long job then has a middle
 stage of length $d-w>0$, which fresh arrivals preempt. Last comes a
 protected tail of length $w$, which once begun runs to completion.
 Two long jobs in their middle stages are served in order of arrival. Under
 M-SERPT both have rank $d$ and the tie goes to the earlier arrival. Under
 Gittins and SERPT the earlier arrival is at least as old, so its rank $b-u$
-is no larger, and at equal ages the tie goes to the earlier arrival. This is the policy $\pi_w$ of the introduction.
+is no larger, and at equal ages the tie goes to the earlier arrival. A policy that treats every job in these three stages is the policy
+$\pi_w$ defined in the introduction.
 
 \begin{lemma}\label{lem:means}
 Let $0\le w<d$ and $r_0\ge0$. Let $r$ be a rank function with $r(u)\le r(0)=r_0$
@@ -298,8 +308,8 @@ rank at most $r_0$ on $[0,a)$, rank above $r_0$ on $[a,b-w)$ and rank at most
 $r_0$ on $[b-w,b)$. So $X^{\mathrm{old}}_0[r_0]=a$, there is one recycled
 interval, of length $w$ for a long job and $0$ for a short one, and
 $\rho^{\mathrm{old}}_0[r_0]=\lambda a$. A later arrival starts at rank
-$r_0$, so $c^{\mathrm{new}}[r_0]=0$; likewise $c^{\mathrm{new}}[\theta]=0$ for
-every $\theta\le r_0$, and $r^{\mathrm{worst}}(u)\le r_0$ on $[0,a)$.
+$r_0$, so $c^{\mathrm{new}}[r_0]=0$; likewise $c^{\mathrm{new}}[\vartheta]=0$ for
+every $\vartheta\le r_0$, and $r^{\mathrm{worst}}(u)\le r_0$ on $[0,a)$.
 Formula \eqref{eq:soap} gives $\lambda(a^2+qw^2)/(2A)+a$.
 
 Take $x=b$. Since $w<d$, the age $a$ lies in $[a,b-w)$, so
@@ -465,7 +475,8 @@ Theorems~\ref{thm:ms} and~\ref{thm:s} are interior.
 \end{remark}
 
 \begin{remark}[Ties]\label{rem:ties}
-Tie breaking enters through the plateau of the M-SERPT rank. For
+The M-SERPT rank is constant on intervals of ages, so jobs of different
+ages can have equal rank. For
 deterministic sizes $X=1$, the M-SERPT rank is constant, so every job has
 the same rank. If ties are broken by preemptive last-come first-served,
 the mean response time is $1/(1-\rho)$, the mean length of a busy period
@@ -475,33 +486,24 @@ $2/(2-\rho)$, which equals $4/3$ at $\rho=1/2$, already larger than $C_2$,
 and tends to $2$ as $\rho\to1$.
 \end{remark}
 
-\begin{remark}[Three-point sizes]
-The family of \cite[Section~7]{SHS20}, along which the ratio for M-SERPT
-tends to $2$, has three-point size laws. So the ratio for
-three-point laws can exceed $C_2$, Theorem~\ref{thm:ms} does not extend
-beyond two points, and the general factor-$2$ conjecture
-\cite[Conjecture~8.1]{SHS20}, \cite[Chapter~11]{Scu22} is not affected by it.
-\end{remark}
 
 
 \section{Computer-assisted steps}\label{sec:computations}
 
-The proofs above use exact computer algebra for the derivatives of
-$N/D$ and the resultant \eqref{eq:res}, and for the polynomial identities
-behind $\mathcal D$, and rational interval arithmetic for the enclosure
-of $C_2$. The identities are verified over the integers by
-\texttt{verify.py} and \texttt{identities\_check.py} in the repository
-named under Data and code availability. The scripts use SymPy
+The derivatives of $N/D$, the resultant \eqref{eq:res} and the
+coefficients of $\mathcal D$ are computed with exact computer algebra,
+and $C_2$ is enclosed with rational interval arithmetic. The identities
+are verified over the integers by \texttt{verify.py} and
+\texttt{identities\_check.py}. The scripts use SymPy
 \cite{SymPy} for the symbolic steps and the \texttt{fractions} module of
-the Python standard library for the rational arithmetic; their outputs
-were reproduced with Python~3.14 and SymPy~1.14. For the enclosure of $C_2$, $F$
+the Python standard library for the rational arithmetic, and run under Python~3.14 and SymPy~1.14. For the enclosure of $C_2$, $F$
 changes sign between two rationals at distance $2\cdot10^{-30}$, which
 therefore contain $t_*$. For every $t$ between them, $K$ changes sign in
 $p$ between two rationals at distance $2\cdot10^{-25}$, which therefore
 contain $p_*$. Evaluating $1+f$ in rational interval arithmetic on this
 box gives the digits of $C_2$ in Theorem~\ref{thm:ms}.
 
-Along the extremal family of Theorem~\ref{thm:ms} the ratio
+Along the family of Theorem~\ref{thm:ms} the ratio
 $\E T_{\mathrm{MS}}/\E T_{\mathrm G}$ is $1.055082$, $1.060121$ and
 $1.060173370$ at $\varepsilon=10^{-1}$, $10^{-3}$ and $10^{-6}$. Along the
 family of Theorem~\ref{thm:s} with $d=10$, $10^3$ and $10^6$ the ratio
@@ -526,7 +528,7 @@ This paper is part of a broader research project on proving open problems with A
 
 The scripts \texttt{verify.py} and \texttt{identities\_check.py}, with
 their outputs, are available at
-\url{https://github.com/yspennstate/sharp-serpt-gittins-two-point}. The
+\url{https://github.com/yspennstate/sharp-serpt-gittins-two-point/tree/f14f52776486c7ae3202df2fb95564636162a738}. The
 same repository holds \texttt{simulation\_results.jsonl}, which compares
 the exact means with discrete-event simulations at five parameter points.
 
