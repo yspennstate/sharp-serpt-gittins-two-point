@@ -1,0 +1,10 @@
+H' identity: True
+Np: True
+Nt: True
+K(t,t): t*(t - 1)*(t**2 - t - 1)  K(1,t): -(t - 2)*(t - 1)
+Res: t**2*(t - 1)*(t**2 - t - 1)*(t**5 + 4*t**4 - 20*t**3 + 12*t**2 + 16*t - 8)
+f: True
+D: True
+ratio-1: True
+D coeffs*p^2: [-p**2*(p - 1)**2*(rho - 2), 2*p*(p - 1)*(p**2*rho + rho - 2), (p*rho - 1)*(p**2*rho - p*rho + rho - 2)]
+boundary: True

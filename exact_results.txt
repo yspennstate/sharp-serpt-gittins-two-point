@@ -1,0 +1,17 @@
+symbolic identities: PASS; resultant = t**2*(t - 1)*(t**2 - t - 1)*(t**5 + 4*t**4 - 20*t**3 + 12*t**2 + 16*t - 8)
+cutoff quadratic regret, SERPT denominator and derivative identities: PASS
+certified C interval: 212034684382553592120903/200000000000000000000000 265043355478191990151129/250000000000000000000000
+stationary point: {"t": "0.45061458079947190380827080693872880720593242", "p": "0.657139140891962522196148761944733894991898625", "rho": "0.68572171821607495560770247611053221001620275", "d_over_a": "1.52174773616841336083092306371085736036994573", "C": "1.06017342191276796060451535444764110226481219"}
+exact rational cases: 5046 grid max: 1.0600634845289978 parameters: ['2/3', '7/10', '1001/1000']
+SOAP CoinFlip{2,14}, lambda=1/10: M = 51/2 G = 101/4 ratio = 102/101
+degenerate, zero-load, scale, stability checks: PASS
+sharpness epsilon: 1/10 ratio: 1.055081704617270
+sharpness epsilon: 1/1000 ratio: 1.060121370127402
+sharpness epsilon: 1/1000000 ratio: 1.060173369848891
+sharpness epsilon: 1/1000000000 ratio: 1.060173421860704
+boundary p=2/3, lambda=9/20: actual ratio = 1 right limit = 1.0600924499229585
+SERPT sharp constant: 1.04289321881345247559915563789515096071516406
+SERPT sharpness d: 10 ratio: 1.020508066648549
+SERPT sharpness d: 1000 ratio: 1.042586659590269
+SERPT sharpness d: 1000000 ratio: 1.042892911202663
+SERPT sharpness d: 1000000000 ratio: 1.042893218505841
