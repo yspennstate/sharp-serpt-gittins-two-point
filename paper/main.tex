@@ -72,7 +72,11 @@ Their proof uses the SOAP (schedule ordered by age-based priority)
 framework of the same authors \cite{SHS18},
 which gives the mean response time of any policy whose priority is a
 function of the age. Scully conjectures the factor $2$ both for M-SERPT
-and for SERPT \cite[Chapter~11]{Scu22}. For the multiserver variant
+and for SERPT \cite[Chapter~11]{Scu22}. He also shows that the same
+three-point family, with the small parameter tied to the load, drives the ratio
+to $2$ for SERPT as well, so that $2$ would be tight for both policies, and
+that for each fixed member of the family the ratio tends to $1$ as
+$\rho\to1$ \cite[Section~11.3]{Scu22}. For the multiserver variant
 M-SERPT-$k$ in heavy traffic, Scully, Grosof and Harchol-Balter proved the
 factor $2$ for size laws that are bounded or satisfy the tail conditions
 stated there \cite[Theorem~3.2]{SGH21}.
@@ -256,19 +260,23 @@ rank functions are
 a\le u<b & d & b-u & b-u
 \end{array}
 \]
-In each case the rank on $[0,a)$ is at most its value $c$ at age $0$, and
-on $[a,b)$ the rank is nonincreasing, exceeds $c$ up to some age $b-w$ and
-is at most $c$ from then on: $c=\mu$, $w=0$ for M-SERPT; $c=h$, $w=h$ for
-Gittins; $c=\mu$, $w=\mu$ for SERPT. A job therefore has three stages: an
-initial stage of length $a$, served in FCFS order ahead of everything else;
-for a long job, a middle stage of length $d-w>0$, which fresh arrivals
-preempt; and a protected tail of length $w$, which once begun runs to
-completion. This is the policy $\pi_w$ of the introduction.
+In each case the rank on $[0,a)$ is at most its value $r_0$ at age $0$.
+On $[a,b)$ the rank is nonincreasing; it exceeds $r_0$ up to some age $b-w$
+and is at most $r_0$ from then on. Here $r_0=\mu$ and $w=0$ for M-SERPT,
+$r_0=h$ and $w=h$ for Gittins, and $r_0=\mu$ and $w=\mu$ for SERPT.
+A job therefore has three stages. The initial stage has length $a$ and is
+served in FCFS order ahead of everything else. A long job then has a middle
+stage of length $d-w>0$, which fresh arrivals preempt. Last comes a
+protected tail of length $w$, which once begun runs to completion.
+Two long jobs in their middle stages are served in order of arrival. Under
+M-SERPT both have rank $d$ and the tie goes to the earlier arrival; under
+Gittins and SERPT the earlier arrival is older and so has the smaller rank
+$b-u$. This is the policy $\pi_w$ of the introduction.
 
 \begin{lemma}\label{lem:means}
-Let $0\le w<d$ and $c\ge0$. Let $r$ be a rank function with $r(u)\le r(0)=c$
-on $[0,a)$, nonincreasing on $[a,b)$, with $r(u)>c$ for $a\le u<b-w$ and
-$r(u)\le c$ for $b-w\le u<b$. Then
+Let $0\le w<d$ and $r_0\ge0$. Let $r$ be a rank function with $r(u)\le r(0)=r_0$
+on $[0,a)$, nonincreasing on $[a,b)$, with $r(u)>r_0$ for $a\le u<b-w$ and
+$r(u)\le r_0$ for $b-w\le u<b$. Then
 \[
 \E[T\mid X=a]=a+\frac{\lambda(a^2+qw^2)}{2A},\qquad
 \E[T\mid X=b]=B+\frac{b-w}{A}+w .
@@ -276,24 +284,24 @@ $r(u)\le c$ for $b-w\le u<b$. Then
 \end{lemma}
 
 \begin{proof}
-Take first $x=a$. Then $\theta=r^{\mathrm{worst}}(0)=c$. An earlier job has
-rank at most $c$ on $[0,a)$, rank above $c$ on $[a,b-w)$ and rank at most
-$c$ on $[b-w,b)$. So $X^{\mathrm{old}}_0[c]=a$, there is one recycled
+Take first $x=a$. Then $\theta=r^{\mathrm{worst}}(0)=r_0$. An earlier job has
+rank at most $r_0$ on $[0,a)$, rank above $r_0$ on $[a,b-w)$ and rank at most
+$r_0$ on $[b-w,b)$. So $X^{\mathrm{old}}_0[r_0]=a$, there is one recycled
 interval, of length $w$ for a long job and $0$ for a short one, and
-$\rho^{\mathrm{old}}_0[c]=\lambda a$. A later arrival starts at rank
-$c$, so $c^{\mathrm{new}}[c]=0$; likewise $c^{\mathrm{new}}[\theta]=0$ for
-every $\theta\le c$, and $r^{\mathrm{worst}}(u)\le c$ on $[0,a)$.
-Formula \eqref{eq:soap} gives $\lambda(a^2+qw^2)/(2(1-\lambda a))+a$.
+$\rho^{\mathrm{old}}_0[r_0]=\lambda a$. A later arrival starts at rank
+$r_0$, so $c^{\mathrm{new}}[r_0]=0$; likewise $c^{\mathrm{new}}[\theta]=0$ for
+every $\theta\le r_0$, and $r^{\mathrm{worst}}(u)\le r_0$ on $[0,a)$.
+Formula \eqref{eq:soap} gives $\lambda(a^2+qw^2)/(2A)+a$.
 
 Take $x=b$. Since $w<d$, the age $a$ lies in $[a,b-w)$, so
-$\theta=r^{\mathrm{worst}}(0)=r(a)>c$ and every age of an earlier job has
+$\theta=r^{\mathrm{worst}}(0)=r(a)>r_0$ and every age of an earlier job has
 rank at most $r(a)$. Hence $X^{\mathrm{old}}_0[\theta]=X$, there is no
 recycled interval, and $\rho^{\mathrm{old}}_0[\theta]=\rho$. A later
-arrival has rank at most $c$ during its first $a$ units and rank $r(a)$ at
-age $a$, so $c^{\mathrm{new}}[\vartheta]=a$ for every $\vartheta\in(c,r(a)]$.
+arrival has rank at most $r_0$ during its first $a$ units and rank $r(a)$ at
+age $a$, so $c^{\mathrm{new}}[\vartheta]=a$ for every $\vartheta\in(r_0,r(a)]$.
 For $u<b-w$ the worst future rank $r^{\mathrm{worst}}(u)$ lies in
-$(c,r(a)]$, and the integrand in \eqref{eq:soap} is $1/A$; for $u\ge b-w$
-it is at most $c$, and the integrand is $1$. Formula \eqref{eq:soap} gives
+$(r_0,r(a)]$, and the integrand in \eqref{eq:soap} is $1/A$; for $u\ge b-w$
+it is at most $r_0$, and the integrand is $1$. Formula \eqref{eq:soap} gives
 $\lambda\E X^2/(2(1-\rho)A)+(b-w)/A+w$.
 \end{proof}
 
@@ -301,28 +309,28 @@ For $a=2$, $b=14$, $p=1/2$, Lemma~\ref{lem:means} with $w=\mu=8$ gives
 $\E[T\mid X=2]=2+18\lambda/(1-2\lambda)$ and $\E[T\mid X=14]=50\lambda/((1-8\lambda)(1-2\lambda))+6/(1-2\lambda)+8$,
 the SERPT formulas of \cite[Section~6.4]{SHS18}.
 
-Write $T(w)$ for the mean response time given by Lemma~\ref{lem:means}:
+Write $m(w)=\E T(\pi_w)$ for the mean response time given by Lemma~\ref{lem:means}:
 \begin{equation}\label{eq:Tw}
-T(w)=p\Bigl(a+\frac{\lambda(a^2+qw^2)}{2A}\Bigr)+q\Bigl(B+\frac{b-w}{A}+w\Bigr).
+m(w)=p\Bigl(a+\frac{\lambda(a^2+qw^2)}{2A}\Bigr)+q\Bigl(B+\frac{b-w}{A}+w\Bigr).
 \end{equation}
 
 \begin{proposition}\label{prop:regret}
 Suppose $pd>a$. For $0\le w<d$,
 \[
-T(w)-\E T_{\mathrm G}=\frac{\lambda pq}{2A}\Bigl(w-\frac ap\Bigr)^2 .
+m(w)-\E T_{\mathrm G}=\frac{\lambda pq}{2A}\Bigl(w-\frac ap\Bigr)^2 .
 \]
 In particular
 \begin{equation}\label{eq:gaps}
-\E T_{\mathrm{MS}}-\E T_{\mathrm G}=\frac{\lambda qa^2}{2p(1-\lambda a)},\qquad
+\E T_{\mathrm{MS}}-\E T_{\mathrm G}=\frac{\lambda qa^2}{2pA},\qquad
 \E T_{\mathrm S}-\E T_{\mathrm G}=\frac{\lambda pq}{2A}\Bigl(\mu-\frac ap\Bigr)^2 .
 \end{equation}
 \end{proposition}
 
 \begin{proof}
-By \eqref{eq:Tw}, $T$ is a quadratic polynomial in $w$ with
-$T'(w)=\lambda pqw/A+q(1-1/A)=(\lambda q/A)(pw-a)$ and
-$T''=\lambda pq/A$. So $T(w)-T(h)=\lambda pq(w-h)^2/(2A)$, and
-$T(h)=\E T_{\mathrm G}$, $T(0)=\E T_{\mathrm{MS}}$, $T(\mu)=\E T_{\mathrm S}$
+By \eqref{eq:Tw}, $m$ is a quadratic polynomial in $w$ with
+$m'(w)=\lambda pqw/A+q(1-1/A)=(\lambda q/A)(pw-a)$ and
+$m''=\lambda pq/A$. So $m(w)-m(h)=\lambda pq(w-h)^2/(2A)$, and
+$m(h)=\E T_{\mathrm G}$, $m(0)=\E T_{\mathrm{MS}}$, $m(\mu)=\E T_{\mathrm S}$
 by Lemma~\ref{lem:means} and the description of the three rank functions
 above; all three values of $w$ lie in $[0,d)$.
 \end{proof}
@@ -469,7 +477,7 @@ beyond two points, and the general factor-$2$ conjecture of
 \begin{remark}[The length of the protected tail]
 Proposition~\ref{prop:regret} also says how sensitive the mean response
 time is to the length of the protected tail: protecting $w=a/p+\delta$
-units instead of $a/p$ costs exactly $\lambda pq\delta^2/(2(1-\lambda a))$,
+units instead of $a/p$ costs exactly $\lambda pq\delta^2/(2A)$,
 for every $\delta$ with $0\le a/p+\delta<d$.
 \end{remark}
 
