@@ -59,7 +59,7 @@ on its age and serves the job of least rank (Section~\ref{sec:model}).
 Among such policies the Gittins policy minimizes the mean response time
 \cite[Theorem~V.1]{SH21}. Under the policy of shortest expected
 remaining processing time (SERPT) the rank of a job is its expected
-remaining size, and Scully, Harchol-Balter and Scheller-Wolf
+remaining size~\cite[Definition~2.2]{SHS20}, and Scully, Harchol-Balter and Scheller-Wolf
 \cite{SHS20} proposed monotonic SERPT (M-SERPT), whose rank is the
 running maximum of the SERPT rank over the ages already reached. They bounded
 the ratio of the mean response time of M-SERPT to that of Gittins by a
@@ -97,18 +97,20 @@ approached by two-point laws.
 
 Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$
 with $0<a<b$ and $0<p<1$; a job of size $a$ is \emph{short} and a job of
-size $b$ is \emph{long}. Write
+size $b$ is \emph{long}. Write $T(\pi)$ for the response time in steady
+state under a policy $\pi$, and
 $T_{\mathrm G}$, $T_{\mathrm{MS}}$ and $T_{\mathrm S}$ for the response
-time in steady state under Gittins, M-SERPT and SERPT; ties in rank are
+time under Gittins, M-SERPT and SERPT; ties in rank are
 broken in first-come first-served (FCFS) order. If $p(b-a)\le a$, the
 three policies serve jobs in FCFS order and the ratio is $1$
-(Lemma~\ref{lem:fcfs}). Suppose $p(b-a)>a$. For $0\le w<b-a$ let $\pi_w$
-be the following policy. The first $a$ units of every job are served in
-FCFS order. The last $w$ units of a long job form its protected tail, which
-once begun runs to completion. The service in between, of length $b-a-w$,
-is given to long jobs in order of arrival, and a new arrival preempts it.
-The first $a$ units of a job are served ahead of all other work except a
-protected tail already begun. Gittins, M-SERPT and
+(Lemma~\ref{lem:fcfs}). Suppose $p(b-a)>a$. For $0\le w<b-a$ the policy $\pi_w$, defined in
+Section~\ref{sec:means} by a rank function, splits every job into stages.
+The \emph{initial stage}, the first $a$ units of service, is served in
+FCFS order. The last $w$ units of a long job form its \emph{protected
+tail}, which once begun runs to completion. The \emph{middle stage}
+between them, of length $b-a-w$, is given to long jobs in order of
+arrival, and a later arrival preempts it. The initial stage of a job is
+served ahead of all other work except a protected tail already begun. Gittins, M-SERPT and
 SERPT schedule jobs exactly as $\pi_w$ does with $w=a/p$, $w=0$ and
 $w=\E X$ (Section~\ref{sec:means}), so one computation with the SOAP
 formula \cite[Theorem~5.5]{SHS18} compares all three. Their mean response
@@ -160,7 +162,7 @@ boundary of the region where FCFS is optimal. Along this family the ratio tends 
 $p(b-a)=a$. The jump comes from tie breaking. At $p(b-a)=a$ the M-SERPT
 rank of a long job past age $a$ equals $\E X$, the rank of a waiting job,
 so FCFS tie breaking lets it finish. For $p(b-a)>a$ its rank exceeds
-$\E X$, and every arrival preempts it (compare Remark~\ref{rem:ties}).
+$\E X$, and every later arrival preempts it (compare Remark~\ref{rem:ties}).
 
 \begin{theorem}\label{thm:s}
 Over the same parameters,
@@ -200,11 +202,12 @@ B=\frac{\lambda\E X^2}{2(1-\rho)A}.
 Since $\lambda a\le\rho<1$, all of $A$, $1-\rho$ and $B$ are positive.
 
 \emph{SERPT} uses the expected remaining size
-$r_{\mathrm S}(u)=\E[X-u\mid X>u]$, so that $r_{\mathrm S}(u)=\mu-u$ for
+$r_{\mathrm S}(u)=\E[X-u\mid X>u]$~\cite[Definition~2.2]{SHS20}, so that $r_{\mathrm S}(u)=\mu-u$ for
 $0\le u<a$ and $r_{\mathrm S}(u)=b-u$ for $a\le u<b$. \emph{M-SERPT} uses
 $r_{\mathrm{MS}}(u)=\max_{0\le v\le u}r_{\mathrm S}(v)$
-\cite[Section~2]{SHS20}. The \emph{Gittins} rank is the reciprocal of the
-Gittins index,
+\cite[Definition~2.4]{SHS20}. The \emph{Gittins} rank is the reciprocal of the
+Gittins index; in the notation of conditional expectations
+\cite[Definition~2.1]{SHS20} reads
 \[
 r_{\mathrm G}(u)=\inf_{v>u}\frac{\E[\min(X,v)-u\mid X>u]}{\PP(X\le v\mid X>u)} .
 \]
@@ -212,6 +215,13 @@ For a two-point law only $v=a$ and $v=b$ need to be considered, since a
 value of $v$ strictly between the atoms or beyond $b$ adds service without
 adding completions. Hence $r_{\mathrm G}(u)=\min\{(a-u)/p,\ \mu-u\}$ for
 $0\le u<a$ and $r_{\mathrm G}(u)=b-u$ for $a\le u<b$.
+
+Since $\E[X-u\mid X>u]$ equals $\mu-u$ for $0\le u<a$ and $b-u$ for
+$a\le u<b$, the law of $X$ is new better than used in expectation, that
+is, $\E[X-u\mid X>u]\le\E X$ for all $u$, exactly when $d\le\mu$, that is,
+when $pd\le a$. For laws with this property Gittins and M-SERPT serve jobs
+in FCFS order~\cite[Section~8.2]{SHS20}. The following lemma gives a
+direct proof for two-point laws and includes SERPT.
 
 \begin{lemma}\label{lem:fcfs}
 If $pd\le a$, then Gittins, M-SERPT and SERPT all serve jobs in FCFS order,
@@ -230,15 +240,12 @@ tie breaking, a job once started runs to completion, and jobs start in
 order of arrival.
 \end{proof}
 
-The condition $pd\le a$ says that $X$ is new better than used in
-expectation, that is, $\E[X-u\mid X>u]\le\E X$ for all $u$. By the
-lemma and the optimality of Gittins \cite[Theorem~V.1]{SH21}, FCFS
-minimizes the mean response time for these two-point laws. Righter,
-Shanthikumar and Yamazaki proved more: for service times that are new
-better than used in expectation, FCFS minimizes the mean sojourn time
-among work-conserving policies that do not use the future \cite{RSY90}
-(see also \cite[Section~1]{SHS20}). For such laws Gittins and
-M-SERPT both coincide with FCFS \cite[Section~8.2]{SHS20}.
+By the lemma and the optimality of Gittins \cite[Theorem~V.1]{SH21}, FCFS
+minimizes the mean response time for these two-point laws among policies
+that do not use the sizes of the jobs. Righter, Shanthikumar and Yamazaki
+proved more: for size laws that are new better than used in expectation,
+FCFS minimizes the mean response time among work-conserving policies
+that do not use the future \cite{RSY90} (see also \cite[Section~1]{SHS20}).
 
 We now recall the SOAP formula \cite[Theorem~5.5]{SHS18} in the form we
 need. Fix a rank function $r$ and a job size $x$, and let
@@ -286,13 +293,15 @@ and is at most $r_0$ from then on. Here $r_0=\mu$ and $w=0$ for M-SERPT,
 $r_0=h$ and $w=h$ for Gittins, and $r_0=\mu$ and $w=\mu$ for SERPT.
 A job therefore has three stages. The initial stage has length $a$ and is
 served in FCFS order ahead of every long job in its middle stage. A long job then has a middle
-stage of length $d-w>0$, which fresh arrivals preempt. Last comes a
+stage of length $d-w>0$, which later arrivals preempt. Last comes a
 protected tail of length $w$, which once begun runs to completion.
 Two long jobs in their middle stages are served in order of arrival. Under
 M-SERPT both have rank $d$ and the tie goes to the earlier arrival. Under
 Gittins and SERPT the earlier arrival is at least as old, so its rank $b-u$
-is no larger, and at equal ages the tie goes to the earlier arrival. A policy that treats every job in these three stages is the policy
-$\pi_w$ defined in the introduction.
+is no larger, and at equal ages the tie goes to the earlier arrival. For $0\le w<d$ let $\pi_w$ be the policy with the rank function equal to
+$1$ on $[0,a)$, to $2$ on $[a,b-w)$ and to $0$ on $[b-w,b)$. It satisfies
+the hypotheses of Lemma~\ref{lem:means} below with $r_0=1$, and it treats
+every job in the three stages above, as described in the introduction.
 
 \begin{lemma}\label{lem:means}
 Let $0\le w<d$ and $r_0\ge0$. Let $r$ be a rank function with $r(u)\le r(0)=r_0$
