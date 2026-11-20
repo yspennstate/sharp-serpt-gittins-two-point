@@ -222,7 +222,7 @@ is, $\E[X-u\mid X>u]\le\E X$ for all $u$, exactly when $d\le\mu$, that is,
 when $pd\le a$. For laws with this property Gittins and M-SERPT serve jobs
 in FCFS order; this is recalled in~\cite[Section~8.2]{SHS20}, where the case of
 Gittins is credited to Aalto, Ayesta and Righter~\cite{AAR09} and the
-case of M-SERPT to their~\cite[Proposition~9]{AAR11}. The following lemma gives a
+case of M-SERPT is deduced from their~\cite[Proposition~9]{AAR11}. The following lemma gives a
 direct proof for two-point laws and includes SERPT.
 
 \begin{lemma}\label{lem:fcfs}
@@ -542,7 +542,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 
 \section*{Declaration of generative AI and AI-assisted technologies}
 
-This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The optimality of the Gittins policy in the M/G/1 queue is proved by Scully and Harchol-Balter~\cite[Theorem~V.1]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins and M-SERPT with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09,AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The optimality of the Gittins policy in the M/G/1 queue is proved by Scully and Harchol-Balter~\cite[Theorem~V.1]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data and code availability}
 
@@ -556,13 +556,13 @@ the exact means with discrete-event simulations at five parameter points.
 
 \bibitem{AAR09}
 S.~Aalto, U.~Ayesta and R.~Righter, \emph{On the Gittins index in the
-M/G/1 queue}, Queueing Syst. \textbf{63} (2009), no.~1, 437--458,
+M/G/1 queue}, Queueing Syst. \textbf{63} (2009), no.~1--4, 437--458,
 doi:10.1007/s11134-009-9141-x.
 
 \bibitem{AAR11}
 S.~Aalto, U.~Ayesta and R.~Righter, \emph{Properties of the Gittins index
 with application to optimal scheduling}, Probab. Engrg. Inform. Sci.
-\textbf{25} (2011), no.~3, 269--288.
+\textbf{25} (2011), no.~3, 269--288, doi:10.1017/S0269964811000015.
 
 \bibitem{RSY90}
 R.~Righter, J.~G. Shanthikumar and G.~Yamazaki, \emph{On extremal service
