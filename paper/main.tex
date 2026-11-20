@@ -74,13 +74,14 @@ supremum of the ratio over all size laws is $2$
 and for SERPT \cite[Chapter~11]{Scu22}. Scully also computes that the same
 three-point family, with its parameter chosen as a function of the load, drives the
 ratio to $2$ for SERPT as well, so that $2$ would be tight for both policies
-\cite[Section~11.3]{Scu22}. For the multiserver variant
+\cite[Section~11.3]{Scu22}. Whether the ratio for SERPT is bounded by any
+constant is left open in~\cite{SHS20}. For the multiserver variant
 M-SERPT-$k$ in heavy traffic, Scully, Grosof and Harchol-Balter proved the
 factor $2$ under conditions on the tail of the size law
 \cite[Theorem~3.2]{SGH21}.
 
-In the single-server M/G/1 queue the gap between the upper bound $5$ and
-the lower bound $2$ remains open. The Gittins rank has no closed form in
+For M-SERPT in the single-server M/G/1 queue the supremum of the ratio over
+all size laws therefore lies between $2$ and $5$, and its value remains open. The Gittins rank has no closed form in
 general; for two-point laws it has one. The SOAP formula gives the mean
 response time of one policy at one size law, and Scully, Harchol-Balter and
 Scheller-Wolf evaluate it on the law that takes the sizes $2$ and $14$ with
@@ -175,10 +176,10 @@ $b/a\to\infty$, and it is not attained.
 \end{theorem}
 
 FCFS tie breaking is the convention of \cite[Section~2.2]{SHS18} and
-\cite[Section~2.1]{SHS20}, and tie breaking changes the answer: for
-deterministic sizes, M-SERPT with preemptive last-come first-served tie
-breaking has ratio $2/(2-\rho)$ to Gittins (Remark~\ref{rem:ties}), which
-is $4/3$ at $\rho=1/2$.
+\cite[Section~2.1]{SHS20}, and tie breaking changes the answer. With preemptive last-come
+first-served tie breaking, the supremum over two-point laws of the ratio of
+M-SERPT to Gittins at load $\rho$ is at least $2/(2-\rho)$
+(Remark~\ref{rem:ties}), which is $4/3$ at $\rho=1/2$.
 
 Section~\ref{sec:model} recalls the policies and the SOAP formula.
 Section~\ref{sec:means} computes the conditional mean response times and
@@ -219,8 +220,9 @@ Since $\E[X-u\mid X>u]$ equals $\mu-u$ for $0\le u<a$ and $b-u$ for
 $a\le u<b$, the law of $X$ is new better than used in expectation, that
 is, $\E[X-u\mid X>u]\le\E X$ for all $u$, exactly when $d\le\mu$, that is,
 when $pd\le a$. For laws with this property Gittins and M-SERPT serve jobs
-in FCFS order; this is recalled in~\cite[Section~8.2]{SHS20}, where it is
-credited to Aalto, Ayesta and Righter. The following lemma gives a
+in FCFS order; this is recalled in~\cite[Section~8.2]{SHS20}, where the case of
+Gittins is credited to Aalto, Ayesta and Righter~\cite{AAR09} and the
+case of M-SERPT to their~\cite[Proposition~9]{AAR11}. The following lemma gives a
 direct proof for two-point laws and includes SERPT.
 
 \begin{lemma}\label{lem:fcfs}
@@ -481,8 +483,9 @@ every finite $b$. \qed
 \begin{remark}[Heavy traffic]
 For fixed $a<b$ and $p$ with $pd>a$, the excesses \eqref{eq:gaps} stay bounded
 as $\rho\uparrow1$, because $A\to1-a/\mu>0$, while $\E T_{\mathrm G}\ge qB\to\infty$.
-So both ratios tend to $1$ in heavy traffic, and the extremal loads in
-Theorems~\ref{thm:ms} and~\ref{thm:s} are interior.
+So for each such law both ratios tend to $1$ in heavy traffic. The
+extremal loads $t_*/p_*$ and $2-\sqrt2$ of Theorems~\ref{thm:ms}
+and~\ref{thm:s} lie in $(0,1)$.
 \end{remark}
 
 \begin{remark}[Ties]\label{rem:ties}
@@ -494,7 +497,13 @@ the mean response time is $1/(1-\rho)$, the mean length of a busy period
 started by one job. Gittins has rank $1-u$, strictly decreasing, and serves
 in FCFS order, with mean response time $1+\rho/(2(1-\rho))$. The ratio is
 $2/(2-\rho)$, which equals $4/3$ at $\rho=1/2$, already larger than $C_2$,
-and tends to $2$ as $\rho\to1$.
+and tends to $2$ as $\rho\to1$. The same holds inside the class of
+Theorems~\ref{thm:ms} and~\ref{thm:s}. If $pd\le a$, the M-SERPT rank is the
+constant $\mu$ on $[0,b)$ (proof of Lemma~\ref{lem:fcfs}), so with
+preemptive last-come first-served ties its mean response time is
+$\mu/(1-\rho)$, while Gittins serves in FCFS order with mean response time
+$\mu+\lambda\E X^2/(2(1-\rho))$. As $b\downarrow a$ at fixed $\rho$ the
+ratio tends to $2/(2-\rho)$.
 \end{remark}
 
 
@@ -533,7 +542,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 
 \section*{Declaration of generative AI and AI-assisted technologies}
 
-This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The optimality of the Gittins policy in the M/G/1 queue is proved by Scully and Harchol-Balter~\cite[Theorem~V.1]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The optimality of the Gittins policy in the M/G/1 queue is proved by Scully and Harchol-Balter~\cite[Theorem~V.1]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins and M-SERPT with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09,AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data and code availability}
 
@@ -544,6 +553,16 @@ same repository holds \texttt{simulation\_results.jsonl}, which compares
 the exact means with discrete-event simulations at five parameter points.
 
 \begin{thebibliography}{99}
+
+\bibitem{AAR09}
+S.~Aalto, U.~Ayesta and R.~Righter, \emph{On the Gittins index in the
+M/G/1 queue}, Queueing Syst. \textbf{63} (2009), no.~1, 437--458,
+doi:10.1007/s11134-009-9141-x.
+
+\bibitem{AAR11}
+S.~Aalto, U.~Ayesta and R.~Righter, \emph{Properties of the Gittins index
+with application to optimal scheduling}, Probab. Engrg. Inform. Sci.
+\textbf{25} (2011), no.~3, 269--288.
 
 \bibitem{RSY90}
 R.~Righter, J.~G. Shanthikumar and G.~Yamazaki, \emph{On extremal service
