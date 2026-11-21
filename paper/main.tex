@@ -35,12 +35,13 @@ In the M/G/1 queue with unknown job sizes, the Gittins policy minimizes
 the mean response time, and the simpler policy M-SERPT (monotonic
 shortest expected remaining processing time) is known to be within a
 factor $5$ of it. We determine the supremum of this ratio when the
-job size takes two values. Over all two-point laws and all
+job size takes two values and ties in rank are broken in
+first-come first-served (FCFS) order. Over all two-point laws and all
 loads below one, the supremum of the ratio of the mean response time of
 M-SERPT to that of Gittins is $C_2=1.06017342\ldots$, an algebraic number
 defined through the root in $(0,1)$ of $t^5+4t^4-20t^3+12t^2+16t-8$. It
 is approached at a load of about $0.686$, as the larger of the two sizes decreases to
-the largest value at which first-come first-served order is optimal, and it is
+the largest value at which FCFS order is optimal, and it is
 not attained. For SERPT the corresponding supremum is
 $(7-2\sqrt2)/4=1.04289\ldots$. Both results rest on an exact formula for
 the excess of the mean response time over that of Gittins.
@@ -162,7 +163,7 @@ along the family of Theorem~\ref{thm:ms} the load tends to $t_*/p_*=0.68572\,171
 The extremal parameters thus have a moderate load and lie at the
 boundary of the region where FCFS is optimal (Lemma~\ref{lem:fcfs} and
 Remark~\ref{rem:fcfs}). Along this family the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
-$p(b-a)=a$. The jump comes from tie breaking. At $p(b-a)=a$ the M-SERPT
+$p(b-a)=a$. The ratio is discontinuous at $p(b-a)=a$ because of the tie rule. There the M-SERPT
 rank of a long job past age $a$ equals $\E X$, the rank of a waiting job,
 so FCFS tie breaking lets it finish. For $p(b-a)>a$ its rank exceeds
 $\E X$, and every later arrival preempts it (compare Remark~\ref{rem:ties}).
@@ -213,7 +214,8 @@ the Gittins index, is, written with conditional expectations,
 \[
 r_{\mathrm G}(u)=\inf_{v>u}\frac{\E[\min(X,v)-u\mid X>u]}{\PP(X\le v\mid X>u)} .
 \]
-For a two-point law only $v=a$ and $v=b$ need to be considered, since a
+For a two-point law only $v=a$ and $v=b$ need to be considered: for
+$u<v<a$ no job completes and the quotient is $+\infty$, a
 value of $v$ strictly between $a$ and $b$ adds service without adding
 completions, and a value beyond $b$ gives the same quotient as $v=b$. Hence $r_{\mathrm G}(u)=\min\{(a-u)/p,\ \mu-u\}$ for
 $0\le u<a$ and $r_{\mathrm G}(u)=b-u$ for $a\le u<b$.
@@ -224,8 +226,7 @@ is, $\E[X-u\mid X>u]\le\E X$ for all $u$, exactly when $d\le\mu$, that is,
 when $pd\le a$. For laws with this property Gittins and M-SERPT serve jobs
 in FCFS order; this is recalled in~\cite[Section~8.2]{SHS20}, where the case of
 Gittins is credited to Aalto, Ayesta and Righter~\cite{AAR09} and the
-case of M-SERPT is deduced from their~\cite[Proposition~9]{AAR11}. The following lemma gives a
-direct proof for two-point laws and includes SERPT.
+case of M-SERPT is deduced from their~\cite[Proposition~9]{AAR11}. For two-point laws the statement, with SERPT included, follows directly from the rank functions.
 
 \begin{lemma}\label{lem:fcfs}
 If $pd\le a$, then Gittins, M-SERPT and SERPT all serve jobs in FCFS order,
@@ -292,10 +293,10 @@ rank functions are
 a\le u<b & d & b-u & b-u
 \end{array}
 \]
-In each case the rank on $[0,a)$ is at most its value $r_0$ at age $0$.
-On $[a,b)$ the rank is nonincreasing; it exceeds $r_0$ up to some age $b-w$
-and is at most $r_0$ from then on. Here $r_0=\mu$ and $w=0$ for M-SERPT,
-$r_0=h$ and $w=h$ for Gittins, and $r_0=\mu$ and $w=\mu$ for SERPT.
+In each case the rank on $[0,a)$ is at most its value $r(0)$ at age $0$.
+On $[a,b)$ the rank is nonincreasing; it exceeds $r(0)$ up to some age $b-w$
+and is at most $r(0)$ from then on. Here $r(0)=\mu$ and $w=0$ for M-SERPT,
+$r(0)=h$ and $w=h$ for Gittins, and $r(0)=\mu$ and $w=\mu$ for SERPT.
 A long job therefore has three stages; a short job has only the first. The initial stage has length $a$ and is
 served in FCFS order ahead of every long job in its middle stage. A long job then has a middle
 stage of length $d-w>0$, which later arrivals preempt. Last comes a
@@ -378,9 +379,8 @@ FCFS is not optimal when $pd>a$. Write $T_{\mathrm{FCFS}}$ for the response
 time under FCFS, the policy with a constant rank function. For it
 \eqref{eq:soap} has $X^{\mathrm{old}}_0[\theta]=X$, no recycled interval and
 $c^{\mathrm{new}}[\theta]=0$, so
-$\E T_{\mathrm{FCFS}}=\mu+\lambda\E X^2/(2(1-\rho))$. With
-$\E T_{\mathrm G}=m(h)$ from \eqref{eq:Tw}, a computation (checked in
-Section~\ref{sec:computations}) gives
+$\E T_{\mathrm{FCFS}}=\mu+\lambda\E X^2/(2(1-\rho))$. Subtracting
+$\E T_{\mathrm G}=m(h)$ from \eqref{eq:Tw} gives
 \[
 \E T_{\mathrm{FCFS}}-\E T_{\mathrm G}=\frac{\lambda q(pd-a)\,Y}{2pA(1-\rho)},
 \qquad Y=pb-qa+\lambda a(qb-pd).
@@ -450,7 +450,7 @@ F'(t)=16(1-t)^4+88t(1-t)^3+108t^2(1-t)^2+32t^3(1-t)+t^4>0
 on $[0,1]$, so $F$ has exactly one root $t_*$ in $(0,1)$. For fixed
 $t\in(0,1)$, $K$ is a quadratic in $p$ with negative leading coefficient
 and positive constant term, so it has exactly one positive root, and since
-$K(t,t)=t(t-1)(t^2-t-1)>0$ and $K(1,t)=-(t-1)(t-2)<0$, that root lies in
+$K|_{p=t}=t(t-1)(t^2-t-1)>0$ and $K|_{p=1}=-(t-1)(t-2)<0$, that root lies in
 $(t,1)$. It is the value $p_*$ of the theorem when $t=t_*$. The interior
 maximizer is therefore $(p_*,t_*)$, and the supremum of the ratio is
 $C_2=1+f(p_*,t_*)$.
@@ -472,25 +472,25 @@ Write $d=1/p+z$ with $z>0$ and fix $p,\rho\in(0,1)$. Then
 $\mu=1/p+qz$, $\lambda=\rho/\mu$ and $\mu-1/p=qz$, so by \eqref{eq:gaps}
 \[
 \frac{\E T_{\mathrm S}-\E T_{\mathrm G}}{\E T_{\mathrm G}}
-=\frac{\rho pq^3(1-\rho)z^2}{\mathcal D},\qquad
-\mathcal D=2A(1-\rho)\mu\,\E T_{\mathrm G}.
+=\frac{\rho pq^3(1-\rho)z^2}{Q},\qquad
+Q=2A(1-\rho)\mu\,\E T_{\mathrm G}.
 \]
 Inserting \eqref{eq:Tw} with $w=1/p$ and $b=1+1/p+z$, and putting
 $J=p+q/p$,
 \[
-\mathcal D=(1-\rho)\bigl\{(2\mu-\rho)J+2\mu q(1+z)\bigr\}
+Q=(1-\rho)\bigl\{(2\mu-\rho)J+2\mu q(1+z)\bigr\}
 +\rho q\Bigl\{1+2q\Bigl(\frac1p+z\Bigr)+q\Bigl(\frac1p+z\Bigr)^2\Bigr\}.
 \]
-As a polynomial in $z$, $\mathcal D=\mathcal D_0+\mathcal D_1z+\mathcal D_2z^2$ with
+As a polynomial in $z$, $Q=Q_0+Q_1z+Q_2z^2$ with
 \[
-\mathcal D_0=\frac{(1-p\rho)\bigl(2-\rho(1-p+p^2)\bigr)}{p^2},\qquad
-\mathcal D_1=\frac{2q\bigl(2-\rho(1+p^2)\bigr)}{p},\qquad
-\mathcal D_2=q^2(2-\rho),
+Q_0=\frac{(1-p\rho)\bigl(2-\rho(1-p+p^2)\bigr)}{p^2},\qquad
+Q_1=\frac{2q\bigl(2-\rho(1+p^2)\bigr)}{p},\qquad
+Q_2=q^2(2-\rho),
 \]
 all positive. Hence
 \[
 \frac{\E T_{\mathrm S}-\E T_{\mathrm G}}{\E T_{\mathrm G}}
-<\frac{\rho pq^3(1-\rho)}{\mathcal D_2}=pq\,\frac{\rho(1-\rho)}{2-\rho},
+<\frac{\rho pq^3(1-\rho)}{Q_2}=pq\,\frac{\rho(1-\rho)}{2-\rho},
 \]
 and the left side tends to the right side as $z\to\infty$. Now
 $pq\le1/4$, with equality at $p=1/2$, and $g(\rho)=\rho(1-\rho)/(2-\rho)$
@@ -534,16 +534,14 @@ ratio tends to $2/(2-\rho)$.
 \section{Computer-assisted steps}\label{sec:computations}
 
 The derivatives of $N/D$, the resultant \eqref{eq:res} and the
-coefficients of $\mathcal D$ are computed with exact computer algebra,
-and $C_2$ is enclosed with rational interval arithmetic. The identities
-are verified as polynomial identities with integer coefficients by \texttt{verify.py} and
-\texttt{identities\_check.py}; the second also checks the display of
-Remark~\ref{rem:fcfs} and the identity used for $\mu Y$ there. The scripts use SymPy
-\cite{SymPy} for the symbolic steps and the \texttt{fractions} module of
-the Python standard library for the rational arithmetic, and run under Python~3.14 and SymPy~1.14. For the enclosure of $C_2$, $F$
-changes sign between two rationals at distance $2\cdot10^{-30}$, which
-therefore contain $t_*$. For every $t$ between them, $K$ changes sign in
-$p$ between two rationals at distance $2\cdot10^{-25}$, which therefore
+coefficients of $Q$ are computed with exact computer algebra,
+and $C_2$ is enclosed with rational interval arithmetic. Each of these is an identity between polynomials with integer
+coefficients, checked by \texttt{verify.py} and \texttt{identities\_check.py} (Python~3.14, SymPy~1.14 \cite{SymPy}, and the
+\texttt{fractions} module for the rational arithmetic); the second script also checks the display of
+Remark~\ref{rem:fcfs} and the identity used for $\mu Y$ there. For the enclosure of $C_2$, $F$
+changes sign between $t_-=0.450614580799471903808270806938$ and $t_+=t_-+2\cdot10^{-30}$, which
+therefore contain $t_*$. For every $t\in[t_-,t_+]$, $K$ changes sign in
+$p$ between $p_-=0.6571391408919625221961487$ and $p_+=p_-+2\cdot10^{-25}$, which therefore
 contain $p_*$. Evaluating $1+f$ in rational interval arithmetic on this
 box gives the digits of $C_2$ in Theorem~\ref{thm:ms}.
 
@@ -558,7 +556,7 @@ $1.0428929$.
 
 The research presented in this paper was supported by the European Research Council (ERC) under the European Union's Horizon Europe research and innovation programme (grant agreement No.~101041711) and by the Simons Foundation as part of the Collaboration on the Mathematical and Scientific Foundations of Deep Learning. It was also supported by Heights Labs, by Convex Nexus Capital and by the Israel Science Foundation (ISF grants 2258/19 and 4101/25).
 
-This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}. The method is described in~\cite{MathBrainPaper}.
+This work was done by Claude (Anthropic) and Codex (OpenAI) agents with Math Brain~\cite{MathBrainRepo,MathBrainPaper} inside the Brain framework~\cite{BrainFramework}.
 
 \section*{Declaration of competing interest}
 
@@ -566,7 +564,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 
 \section*{Declaration of generative AI and AI-assisted technologies}
 
-This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The Gittins policy is named after Gittins~\cite{Git89}; its optimality in the M/G/1 queue has several earlier proofs, which Scully and Harchol-Balter review before giving a proof in full generality~\cite[Theorem~V.1 and Section~II]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+This paper is part of a broader research project on proving open problems with AI systems. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The Gittins policy is named after Gittins~\cite{Git89}. Its optimality in the M/G/1 queue has several earlier proofs, which Scully and Harchol-Balter review before giving a proof in full generality~\cite[Theorem~V.1 and Section~II]{SH21}. The optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data and code availability}
 
@@ -604,7 +602,7 @@ scheduling with unknown job sizes in heavy traffic}, Perform. Eval.
 
 \bibitem{SH21}
 Z.~Scully and M.~Harchol-Balter, \emph{The Gittins policy in the M/G/1
-queue}, extended and revised version, arXiv:2111.10703, 2021.
+queue}, arXiv:2111.10703, 2021.
 
 \bibitem{SHS18}
 Z.~Scully, M.~Harchol-Balter and A.~Scheller-Wolf, \emph{SOAP: one clean
