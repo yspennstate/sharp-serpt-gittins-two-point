@@ -86,17 +86,17 @@ factor $2$ under conditions on the tail of the size law
 
 For M-SERPT in the single-server M/G/1 queue the supremum of the ratio over
 all size laws therefore lies between $2$ and $5$, and its value is open.
-Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$ with $0<a<b$, and write $d=b-a$ and
+Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$ with $0<a<b$ and $0<p<1$, and write $d=b-a$ and
 $\mu=\E X=a+qd$; a job of size $a$ is \emph{short} and a job of size $b$ is
 \emph{long}. Write $T(\pi)$ for the response time in steady state under a
 policy $\pi$, and $T_{\mathrm G}$, $T_{\mathrm{MS}}$ and $T_{\mathrm S}$ for
 the response time under Gittins, M-SERPT and SERPT; ties in rank are broken
 in first-come first-served (FCFS) order. If $pd\le a$, the three policies
 serve jobs in FCFS order and the ratio is $1$ (Lemma~\ref{lem:fcfs}). If
-$pd>a$, the SOAP formula \cite[Theorem~5.5]{SHS18} gives each mean response
-time, and Scully, Harchol-Balter and Scheller-Wolf carry this out for the
-sizes $2$ and $14$ with equal probability \cite[Section~6.4]{SHS18}. Policy
-by policy, it gives for M-SERPT and for Gittins two different rational
+$pd>a$, the SOAP formula \cite[Theorem~5.5]{SHS18} gives the mean response
+time of each policy, and Scully, Harchol-Balter and Scheller-Wolf evaluate it
+on the law that takes the sizes $2$ and $14$ with equal probability
+\cite[Section~6.4]{SHS18}. Policy by policy, the formula gives for M-SERPT and for Gittins two different rational
 functions of $a$, $b$, $p$ and $\lambda$, and neither shows where their
 quotient is largest.
 
@@ -509,8 +509,10 @@ The M-SERPT rank is constant on intervals of ages, so jobs of different
 ages can have equal rank. For
 deterministic sizes $X=1$, the M-SERPT rank is constant, so every job has
 the same rank. If ties are broken by preemptive last-come first-served,
-the mean response time is $1/(1-\rho)$, the mean length of a busy period
-started by one job. Gittins has rank $1-u$, strictly decreasing, so it never preempts
+the mean response time is the mean length $\E Z$ of a busy period
+started by one job. Each of the jobs that arrive during its unit of service,
+$\rho$ of them on average, starts a busy period with the law of $Z$, so
+$\E Z=1+\rho\E Z$ and $\E Z=1/(1-\rho)$. Gittins has rank $1-u$, strictly decreasing, so it never preempts
 the job in service, and with either tie breaking its mean response time is
 $1+\rho/(2(1-\rho))$. The ratio is
 $2/(2-\rho)$, which equals $4/3$ at $\rho=1/2$, already larger than $C_2$,
@@ -552,7 +554,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 
 \section*{Declaration of generative AI and AI-assisted technologies}
 
-This paper is part of a broader research project on proving open problems with AI systems. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The Gittins policy is named after Gittins~\cite{Git89}. Its optimality in the M/G/1 queue has several earlier proofs, which Scully and Harchol-Balter review before giving a proof in full generality~\cite[Theorem~V.1 and Section~II]{SH21}. The optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+This paper is part of a broader research project on proving open problems with AI systems. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point laws are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The Gittins policy is named after Gittins~\cite{Git89}. Its optimality in the M/G/1 queue has several earlier proofs, which Scully and Harchol-Balter review before giving a proof in full generality~\cite[Theorem~V.1 and Section~II]{SH21}. The optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data and code availability}
 
