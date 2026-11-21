@@ -198,7 +198,7 @@ and~\ref{thm:s} and the digits of $C_2$.
 A policy of the kind considered here assigns to a job of age $u$ a
 \emph{rank} $r(u)$ and always serves the job of least rank, breaking ties
 in FCFS order. Throughout, $X$ takes the values $a<b$ with probabilities
-$p$ and $q=1-p$, $d=b-a$ and $\mu=\E X=a+qd$ as in the introduction, and we write
+$p$ and $q=1-p$; $d=b-a$ and $\mu=\E X=a+qd$ are as in the introduction, and we write
 \[
 A=1-\lambda a,\qquad
 B=\frac{\lambda\E X^2}{2(1-\rho)A}.
@@ -222,7 +222,7 @@ $0\le u<a$ and $r_{\mathrm G}(u)=b-u$ for $a\le u<b$.
 
 Since $\E[X-u\mid X>u]$ equals $\mu-u$ for $0\le u<a$ and $b-u$ for
 $a\le u<b$, the law of $X$ is new better than used in expectation, that
-is, $\E[X-u\mid X>u]\le\E X$ for all $u$, exactly when $d\le\mu$, that is,
+is, $\E[X-u\mid X>u]\le\mu$ for all $u$, exactly when $d\le\mu$, that is,
 when $pd\le a$. For laws with this property Gittins and M-SERPT serve jobs
 in FCFS order; this is recalled in~\cite[Section~8.2]{SHS20}, where the case of
 Gittins is credited to Aalto, Ayesta and Righter~\cite{AAR09} and the
@@ -405,7 +405,7 @@ short-job term does not depend on $d$, while $b-h$, $\E X^2$ and
 $1/(1-\rho)$ increase strictly with $d$. So $\E T_{\mathrm G}$ increases
 strictly with $d$, and the ratio decreases strictly. Its supremum is the
 limit as $d\downarrow1/p$. In that limit
-$\E X\to1/p$, $\E X^2\to(1+p-p^2)/p^2$ and $\rho\to t/p$, and by
+$\mu\to1/p$, $\E X^2\to(1+p-p^2)/p^2$ and $\rho\to t/p$, and by
 \eqref{eq:Tw} with $w=h=1/p$ and $b=1+d$,
 \[
 \E T_{\mathrm G}\to\frac1p+\frac{t(1+p-p^2)}{2p(p-t)},
