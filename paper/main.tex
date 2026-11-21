@@ -66,16 +66,17 @@ remaining size~\cite[Definition~2.2]{SHS20}. Scully, Harchol-Balter and Scheller
 \cite{SHS20} proposed monotonic SERPT (M-SERPT), whose rank is the
 running maximum of the SERPT rank over the ages already reached. They bounded
 the ratio of the mean response time of M-SERPT to that of Gittins by a
-function of the load $\rho=\lambda\E X<1$ that is at most $5$, for every size
-law \cite[Theorem~5.1]{SHS20}. The proof uses the SOAP (schedule ordered
+function of the load $\rho=\lambda\E X<1$ that is at most $3$ for
+$\rho\le8/9$ and at most $5$ for every load, for every size law
+\cite[Theorem~5.1 and Corollary~5.2]{SHS20}. The proof uses the SOAP (schedule ordered
 by age-based priority) framework of the same authors \cite{SHS18}, which
 gives the mean response time of any policy whose rank is a function of the
-age. They also give a family of three-point laws along which the ratio
+age. They also give three-point laws along which the ratio
 tends to $2$ \cite[Section~7]{SHS20}, and they conjecture that the
 supremum of the ratio over all size laws is $2$
 \cite[Conjecture~8.1]{SHS20}. Scully conjectures the factor $2$ both for M-SERPT
 and for SERPT \cite[Chapter~11]{Scu22}. Scully also computes that the same
-three-point family, with its parameter chosen as a function of the load, drives the
+three-point laws, with their parameter chosen as a function of the load, drive the
 ratio to $2$ for SERPT as well, so that $2$ would be tight for both policies
 \cite[Section~11.3]{Scu22}. Whether the ratio for SERPT is bounded by any
 constant is left open in~\cite{SHS20}. For the multiserver variant
@@ -84,51 +85,39 @@ factor $2$ under conditions on the tail of the size law
 \cite[Theorem~3.2]{SGH21}.
 
 For M-SERPT in the single-server M/G/1 queue the supremum of the ratio over
-all size laws therefore lies between $2$ and $5$, and its value remains open. On two-point laws the Gittins rank has a closed
-form, and the SOAP formula gives the mean response time of each policy;
-Scully, Harchol-Balter and Scheller-Wolf evaluate it on the law that takes
-the sizes $2$ and $14$ with equal probability \cite[Section~6.4]{SHS18}.
-Evaluated policy by policy, the formula gives a different rational function
-of the two sizes, their probabilities and the load for each policy, and the
-supremum of a quotient of two of them cannot be read off. On two-point laws
-the three policies schedule jobs as members of one family of policies, and
-the excess over Gittins along the family is a quadratic in one parameter;
-for M-SERPT this reduces the problem to a maximization in two variables.
-The supremum for M-SERPT is
-$C_2=1.06017\ldots$
-(Theorem~\ref{thm:ms}), so the ratio $2$ of the three-point family
-of~\cite[Section~7]{SHS20} is not approached by two-point laws.
+all size laws therefore lies between $2$ and $5$, and its value is open.
+Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$ with $0<a<b$, and write $d=b-a$ and
+$\mu=\E X=a+qd$; a job of size $a$ is \emph{short} and a job of size $b$ is
+\emph{long}. Write $T(\pi)$ for the response time in steady state under a
+policy $\pi$, and $T_{\mathrm G}$, $T_{\mathrm{MS}}$ and $T_{\mathrm S}$ for
+the response time under Gittins, M-SERPT and SERPT; ties in rank are broken
+in first-come first-served (FCFS) order. If $pd\le a$, the three policies
+serve jobs in FCFS order and the ratio is $1$ (Lemma~\ref{lem:fcfs}). If
+$pd>a$, the SOAP formula \cite[Theorem~5.5]{SHS18} gives each mean response
+time, and Scully, Harchol-Balter and Scheller-Wolf carry this out for the
+sizes $2$ and $14$ with equal probability \cite[Section~6.4]{SHS18}. Policy
+by policy, it gives for M-SERPT and for Gittins two different rational
+functions of $a$, $b$, $p$ and $\lambda$, and neither shows where their
+quotient is largest.
 
-Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$
-with $0<a<b$ and $0<p<1$, and write $d=b-a$ and $\mu=\E X=a+qd$; a job of size $a$ is \emph{short} and a job of
-size $b$ is \emph{long}. Write $T(\pi)$ for the response time in steady
-state under a policy $\pi$, and
-$T_{\mathrm G}$, $T_{\mathrm{MS}}$ and $T_{\mathrm S}$ for the response
-time under Gittins, M-SERPT and SERPT; ties in rank are
-broken in first-come first-served (FCFS) order. If $pd\le a$, the
-three policies serve jobs in FCFS order and the ratio is $1$
-(Lemma~\ref{lem:fcfs}). Suppose $pd>a$. For $0\le w<d$ the policy $\pi_w$, defined in
-Section~\ref{sec:means} by a rank function, splits every job into stages.
-The \emph{initial stage}, the first $a$ units of service, is served in
-FCFS order. The last $w$ units of a long job form its \emph{protected
-tail}, which once begun runs to completion. The \emph{middle stage}
-between them, of length $d-w$, is given to long jobs in FCFS
-order, and a later arrival preempts it. The initial stage of a job is
-served ahead of all other work except a protected tail already begun. Gittins, M-SERPT and
-SERPT schedule jobs exactly as $\pi_w$ does with $w=a/p$, $w=0$ and
-$w=\mu$ (Section~\ref{sec:means}), so one computation with the SOAP
-formula \cite[Theorem~5.5]{SHS18} compares all three. Their mean response
-times are values of one quadratic in $w$, least at $w=a/p$
-(Proposition~\ref{prop:regret}):
+For $pd>a$ the three policies differ in one number. A long job receives its first $a$
+units of service in FCFS order together with the short jobs. It is then
+preempted by every later arrival, except during its last $w$ units, which
+run to completion once begun, and $w=a/p$ for Gittins, $w=0$ for M-SERPT and
+$w=\mu$ for SERPT. For $0\le w<d$ let $\pi_w$ be the policy that gives a job
+of age $u$ the rank $1$ for $0\le u<a$, the rank $2$ for $a\le u<b-w$ and the
+rank $0$ for $b-w\le u<b$; for these three values of $w$ it serves jobs in
+the same order as the three policies (Section~\ref{sec:means}). One
+computation with the SOAP formula gives
 \begin{equation}\label{eq:regret-intro}
 \E T(\pi_w)-\E T_{\mathrm G}=\frac{\lambda pq}{2(1-\lambda a)}
-\Bigl(w-\frac ap\Bigr)^2 .
+\Bigl(w-\frac ap\Bigr)^2
 \end{equation}
-For M-SERPT the excess $\lambda qa^2/(2p(1-\lambda a))$ does not depend on
-$b$, while for fixed $a$, $p$ and $\lambda$ the mean $\E T_{\mathrm G}$
-increases with $b$, so the supremum is approached in the limit
-$pd\downarrow a$. There the ratio becomes $1+f(p,t)$ with
-$t=\lambda a$, where
+(Proposition~\ref{prop:regret}). For M-SERPT the excess
+$\lambda qa^2/(2p(1-\lambda a))$ does not depend on $b$, while for fixed $a$,
+$p$ and $\lambda$ the mean $\E T_{\mathrm G}$ increases with $b$. So the
+supremum is a limit at $pd\downarrow a$, the boundary of the region where
+FCFS is optimal. There the ratio is $1+f(p,t)$ with $t=\lambda a$ and
 \begin{equation}\label{eq:f}
 f(p,t)=\frac{t(1-p)(p-t)}{(1-t)\bigl(2p-(1-p+p^2)t\bigr)},
 \end{equation}
@@ -137,6 +126,9 @@ maximization of $f$ to the quintic
 \begin{equation}\label{eq:F}
 F(t)=t^5+4t^4-20t^3+12t^2+16t-8 .
 \end{equation}
+The supremum is $C_2=1.06017\ldots$ (Theorem~\ref{thm:ms}), so the ratio $2$
+of the three-point laws of~\cite[Section~7]{SHS20} is not approached by
+two-point laws.
 For SERPT, at fixed $p$ and $\rho$, the excess and
 $\E T_{\mathrm G}$ grow at the same rate in $b$, and the supremum is the
 limit $b/a\to\infty$. The identity~\eqref{eq:regret-intro} and the
@@ -162,10 +154,10 @@ attained.
 \end{theorem}
 
 Numerically $t_*=0.45061\,45807\ldots$ and $p_*=0.65713\,91408\ldots$, and
-along the family of Theorem~\ref{thm:ms} the load tends to $t_*/p_*=0.68572\,17182\ldots$.
-The extremal parameters thus have a moderate load and lie at the
+along the parameters of Theorem~\ref{thm:ms} the load tends to $t_*/p_*=0.68572\,17182\ldots$.
+The extremal parameters lie at the
 boundary of the region where FCFS is optimal (Lemma~\ref{lem:fcfs} and
-Remark~\ref{rem:fcfs}). Along this family the ratio tends to $C_2$ as $pd\downarrow a$ and equals $1$ at
+Remark~\ref{rem:fcfs}). Along these parameters the ratio tends to $C_2$ as $pd\downarrow a$ and equals $1$ at
 $pd=a$. The ratio is discontinuous at $pd=a$ because of the tie rule. There the M-SERPT
 rank of a long job past age $a$ equals $\mu$, the rank of a waiting job,
 so FCFS tie breaking lets it finish. For $pd>a$ its rank exceeds
@@ -188,14 +180,9 @@ first-served tie breaking, the supremum over two-point laws of the ratio of
 M-SERPT to Gittins at load $\rho$ is at least $2/(2-\rho)$
 (Remark~\ref{rem:ties}), which is $4/3$ at $\rho=1/2$.
 
-Section~\ref{sec:model} recalls the policies and the SOAP formula.
-Section~\ref{sec:means} computes the conditional mean response times and
-proves \eqref{eq:regret-intro}. Sections~\ref{sec:ms} and~\ref{sec:s}
-prove Theorems~\ref{thm:ms} and~\ref{thm:s}. Section~\ref{sec:remarks}
-collects remarks on heavy traffic and ties, and
-Section~\ref{sec:computations} gives the computer algebra and the
-interval arithmetic behind the proofs of Theorems~\ref{thm:ms}
-and~\ref{thm:s} and the digits of $C_2$.
+The polynomial identities and the enclosure of $C_2$ used in
+Sections~\ref{sec:ms} and~\ref{sec:s} are checked by computer;
+Section~\ref{sec:computations} lists them.
 
 \section{Policies and the SOAP formula}\label{sec:model}
 
@@ -309,8 +296,9 @@ M-SERPT both have rank $d$ and the tie goes to the earlier arrival. Under
 Gittins and SERPT the earlier arrival is at least as old: this holds when
 the later one enters its middle stage, at age $a$, and it is kept because
 the server works on the older of the two. So the rank $b-u$ of the earlier
-arrival is no larger, and at equal ages the tie goes to the earlier arrival. For $0\le w<d$ let $\pi_w$ be the policy with the rank function equal to
-$1$ on $[0,a)$, to $2$ on $[a,b-w)$ and to $0$ on $[b-w,b)$. It satisfies
+arrival is no larger, and at equal ages the tie goes to the earlier arrival.
+
+The policy $\pi_w$ of the introduction satisfies
 the hypotheses of Lemma~\ref{lem:means} below with $r_0=1$, and for
 $w=0$, $h$ and $\mu$ it serves jobs in the same order as M-SERPT, Gittins
 and SERPT respectively.
@@ -540,22 +528,17 @@ ratio tends to $2/(2-\rho)$.
 \section{Computer-assisted steps}\label{sec:computations}
 
 The identities for the derivatives of $N/D$ (Section~\ref{sec:ms}), the resultant \eqref{eq:res}, the
+formula for $F'$, the
 coefficients of $\Delta$ (Section~\ref{sec:s}) and the display of Remark~\ref{rem:fcfs} with the identity
 for $\mu Y$ are identities of rational functions with integer coefficients. They are verified in exact
-arithmetic by \texttt{verify.py} and \texttt{identities\_check.py} (Python~3.14, SymPy~1.14 \cite{SymPy}).
+arithmetic by \texttt{verify.py} and \texttt{identities\_check.py} (Python~3.14, SymPy~1.14 \cite{SymPy}),
+in which the quintic $F$ is called \texttt{H}.
 The enclosure of $C_2$ uses rational interval arithmetic (the \texttt{fractions} module). For the enclosure of $C_2$, $F$
 changes sign between $t_-=0.450614580799471903808270806938$ and $t_+=t_-+2\cdot10^{-30}$, which
 therefore contain $t_*$. For every $t\in[t_-,t_+]$, $K$ changes sign in
 $p$ between $p_-=0.6571391408919625221961487$ and $p_+=p_-+2\cdot10^{-25}$, which therefore
 contain $p_*$. Evaluating $1+f$ in rational interval arithmetic on this
 box gives the digits of $C_2$ in Theorem~\ref{thm:ms}.
-
-Along the family of Theorem~\ref{thm:ms} the ratio
-$\E T_{\mathrm{MS}}/\E T_{\mathrm G}$ is $1.055082$, $1.060121$ and
-$1.060173370$ at $\varepsilon=10^{-1}$, $10^{-3}$ and $10^{-6}$. Along the
-family of Theorem~\ref{thm:s} with $a=1$, $p=1/2$, $\rho=2-\sqrt2$ and $d=10$, $10^3$ and $10^6$ the ratio
-$\E T_{\mathrm S}/\E T_{\mathrm G}$ is $1.0205$, $1.04259$ and
-$1.0428929$.
 
 \section*{Acknowledgments and funding}
 
@@ -607,7 +590,8 @@ scheduling with unknown job sizes in heavy traffic}, Perform. Eval.
 
 \bibitem{SH21}
 Z.~Scully and M.~Harchol-Balter, \emph{The Gittins policy in the M/G/1
-queue}, WiOpt 2021; extended version arXiv:2111.10703, 2021.
+queue}, WiOpt 2021; extended version arXiv:2111.10703v1, 2021, to which the
+theorem and section numbers cited here refer.
 
 \bibitem{SHS18}
 Z.~Scully, M.~Harchol-Balter and A.~Scheller-Wolf, \emph{SOAP: one clean
@@ -623,7 +607,7 @@ Syst. \textbf{4} (2020), no.~1, Art.~11, 1--29, doi:10.1145/3379477.
 \bibitem{Scu22}
 Z.~Scully, \emph{A new toolbox for scheduling theory}, Ph.D. thesis,
 Carnegie Mellon University, technical report CMU-CS-22-132, 2022; revised
-June 2025, \url{https://ziv.codes/pdf/scully-thesis.pdf}.
+June 2025 (the version cited here), \url{https://ziv.codes/pdf/scully-thesis.pdf}.
 
 \bibitem{SymPy}
 A.~Meurer, C.~P.~Smith, M.~Paprocki, O.~\v{C}ert\'{\i}k,
