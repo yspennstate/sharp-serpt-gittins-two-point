@@ -56,8 +56,9 @@ preemption at no cost. The scheduler does not know the size of a job; it
 knows only the amount of service the job has received so far, its
 \emph{age}. Each policy considered here gives a job a rank that depends
 on its age and serves the job of least rank (Section~\ref{sec:model}).
-Among such policies the Gittins policy minimizes the mean response time
-\cite[Theorem~V.1]{SH21}. Under the policy of shortest expected
+Among such policies the Gittins policy, named after Gittins~\cite{Git89},
+minimizes the mean response time; a proof in full generality, with a review
+of the earlier proofs, is \cite[Theorem~V.1 and Section~II]{SH21}. Under the policy of shortest expected
 remaining processing time (SERPT) the rank of a job is its expected
 remaining size~\cite[Definition~2.2]{SHS20}, and Scully, Harchol-Balter and Scheller-Wolf
 \cite{SHS20} proposed monotonic SERPT (M-SERPT), whose rank is the
@@ -212,7 +213,7 @@ the Gittins index, is, written with conditional expectations,
 r_{\mathrm G}(u)=\inf_{v>u}\frac{\E[\min(X,v)-u\mid X>u]}{\PP(X\le v\mid X>u)} .
 \]
 For a two-point law only $v=a$ and $v=b$ need to be considered, since a
-value of $v$ strictly between the atoms or beyond $b$ adds service without
+value of $v$ strictly between $a$ and $b$ or beyond $b$ adds service without
 adding completions. Hence $r_{\mathrm G}(u)=\min\{(a-u)/p,\ \mu-u\}$ for
 $0\le u<a$ and $r_{\mathrm G}(u)=b-u$ for $a\le u<b$.
 
@@ -495,15 +496,15 @@ deterministic sizes $X=1$, the M-SERPT rank is constant, so every job has
 the same rank. If ties are broken by preemptive last-come first-served,
 the mean response time is $1/(1-\rho)$, the mean length of a busy period
 started by one job. Gittins has rank $1-u$, strictly decreasing, so it never preempts
-the job in service, and under either tie rule its mean response time is
+the job in service, and with either tie breaking its mean response time is
 $1+\rho/(2(1-\rho))$. The ratio is
 $2/(2-\rho)$, which equals $4/3$ at $\rho=1/2$, already larger than $C_2$,
 and tends to $2$ as $\rho\to1$. The same holds inside the class of
-Theorems~\ref{thm:ms} and~\ref{thm:s}. If $pd\le a$, the M-SERPT rank is the
+Theorems~\ref{thm:ms} and~\ref{thm:s}. If $pd<a$, the M-SERPT rank is the
 constant $\mu$ on $[0,b)$ (proof of Lemma~\ref{lem:fcfs}), so with
 preemptive last-come first-served ties its mean response time is
 $\mu/(1-\rho)$, while Gittins never preempts the job in service and has mean response
-time $\mu+\lambda\E X^2/(2(1-\rho))$ under either tie rule. As $b\downarrow a$ at fixed $\rho$ the
+time $\mu+\lambda\E X^2/(2(1-\rho))$ with either tie breaking. As $b\downarrow a$ at fixed $\rho$ the
 ratio tends to $2/(2-\rho)$.
 \end{remark}
 
@@ -543,7 +544,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 
 \section*{Declaration of generative AI and AI-assisted technologies}
 
-This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The optimality of the Gittins policy in the M/G/1 queue is proved by Scully and Harchol-Balter~\cite[Theorem~V.1]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+This paper is part of a broader research project on proving open problems with AI systems. The work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}; the method is described in~\cite{MathBrainPaper}. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The Gittins policy is named after Gittins~\cite{Git89}; its optimality in the M/G/1 queue has several earlier proofs, which Scully and Harchol-Balter review before giving a proof in full generality~\cite[Theorem~V.1 and Section~II]{SH21}, and the optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data and code availability}
 
@@ -564,6 +565,10 @@ doi:10.1007/s11134-009-9141-x.
 S.~Aalto, U.~Ayesta and R.~Righter, \emph{Properties of the Gittins index
 with application to optimal scheduling}, Probab. Engrg. Inform. Sci.
 \textbf{25} (2011), no.~3, 269--288, doi:10.1017/S0269964811000015.
+
+\bibitem{Git89}
+J.~C.~Gittins, \emph{Multi-Armed Bandit Allocation Indices}, Wiley,
+Chichester, 1989.
 
 \bibitem{RSY90}
 R.~Righter, J.~G. Shanthikumar and G.~Yamazaki, \emph{On extremal service
