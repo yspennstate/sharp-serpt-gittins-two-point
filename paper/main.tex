@@ -472,25 +472,25 @@ Write $d=1/p+z$ with $z>0$ and fix $p,\rho\in(0,1)$. Then
 $\mu=1/p+qz$, $\lambda=\rho/\mu$ and $\mu-1/p=qz$, so by \eqref{eq:gaps}
 \[
 \frac{\E T_{\mathrm S}-\E T_{\mathrm G}}{\E T_{\mathrm G}}
-=\frac{\rho pq^3(1-\rho)z^2}{Q},\qquad
-Q=2A(1-\rho)\mu\,\E T_{\mathrm G}.
+=\frac{\rho pq^3(1-\rho)z^2}{\Delta},\qquad
+\Delta=2A(1-\rho)\mu\,\E T_{\mathrm G}.
 \]
 Inserting \eqref{eq:Tw} with $w=1/p$ and $b=1+1/p+z$, and putting
 $J=p+q/p$,
 \[
-Q=(1-\rho)\bigl\{(2\mu-\rho)J+2\mu q(1+z)\bigr\}
+\Delta=(1-\rho)\bigl\{(2\mu-\rho)J+2\mu q(1+z)\bigr\}
 +\rho q\Bigl\{1+2q\Bigl(\frac1p+z\Bigr)+q\Bigl(\frac1p+z\Bigr)^2\Bigr\}.
 \]
-As a polynomial in $z$, $Q=Q_0+Q_1z+Q_2z^2$ with
+As a polynomial in $z$, $\Delta=\Delta_0+\Delta_1z+\Delta_2z^2$ with
 \[
-Q_0=\frac{(1-p\rho)\bigl(2-\rho(1-p+p^2)\bigr)}{p^2},\qquad
-Q_1=\frac{2q\bigl(2-\rho(1+p^2)\bigr)}{p},\qquad
-Q_2=q^2(2-\rho),
+\Delta_0=\frac{(1-p\rho)\bigl(2-\rho(1-p+p^2)\bigr)}{p^2},\qquad
+\Delta_1=\frac{2q\bigl(2-\rho(1+p^2)\bigr)}{p},\qquad
+\Delta_2=q^2(2-\rho),
 \]
 all positive. Hence
 \[
 \frac{\E T_{\mathrm S}-\E T_{\mathrm G}}{\E T_{\mathrm G}}
-<\frac{\rho pq^3(1-\rho)}{Q_2}=pq\,\frac{\rho(1-\rho)}{2-\rho},
+<\frac{\rho pq^3(1-\rho)}{\Delta_2}=pq\,\frac{\rho(1-\rho)}{2-\rho},
 \]
 and the left side tends to the right side as $z\to\infty$. Now
 $pq\le1/4$, with equality at $p=1/2$, and $g(\rho)=\rho(1-\rho)/(2-\rho)$
@@ -534,7 +534,7 @@ ratio tends to $2/(2-\rho)$.
 \section{Computer-assisted steps}\label{sec:computations}
 
 The derivatives of $N/D$, the resultant \eqref{eq:res} and the
-coefficients of $Q$ are computed with exact computer algebra,
+coefficients of $\Delta$ are computed with exact computer algebra,
 and $C_2$ is enclosed with rational interval arithmetic. Each of these is an identity between polynomials with integer
 coefficients, checked by \texttt{verify.py} and \texttt{identities\_check.py} (Python~3.14, SymPy~1.14 \cite{SymPy}, and the
 \texttt{fractions} module for the rational arithmetic); the second script also checks the display of
@@ -556,7 +556,7 @@ $1.0428929$.
 
 The research presented in this paper was supported by the European Research Council (ERC) under the European Union's Horizon Europe research and innovation programme (grant agreement No.~101041711) and by the Simons Foundation as part of the Collaboration on the Mathematical and Scientific Foundations of Deep Learning. It was also supported by Heights Labs, by Convex Nexus Capital and by the Israel Science Foundation (ISF grants 2258/19 and 4101/25).
 
-This work was done by Claude (Anthropic) and Codex (OpenAI) agents with Math Brain~\cite{MathBrainRepo,MathBrainPaper} inside the Brain framework~\cite{BrainFramework}.
+This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}. The method is described in~\cite{MathBrainPaper}.
 
 \section*{Declaration of competing interest}
 
