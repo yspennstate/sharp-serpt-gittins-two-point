@@ -33,3 +33,12 @@ P = sp.Poly(sp.expand(Dproof*p**2), z)
 print("D coeffs*p^2:", [sp.factor(c) for c in P.all_coeffs()])
 # Gittins mean at the boundary d = 1/p (a = 1, b = 1 + 1/p) equals the FCFS (Pollaczek-Khinchine) mean
 print("boundary:", sp.simplify(ET(1/p, p, t, 1 + 1/p) - fcfs) == 0)
+# FCFS minus Gittins for pd > a (general a, d, p, lambda): the remark after Proposition 3.3
+a, d, lm = sp.symbols('a d lm', positive=True)
+q = 1-p; b = a + d; mu = a + q*d; EX2 = p*a**2 + q*b**2; r = lm*mu; A = 1 - lm*a
+B = lm*EX2/(2*(1-r)*A)
+Gm = p*(a + lm*(a**2 + q*(a/p)**2)/(2*A)) + q*(B + (b-a/p)/A + a/p)
+Ff = mu + lm*EX2/(2*(1-r))
+Y = p*b - q*a + lm*a*(q*b - p*d)
+print("FCFS-Gittins:", sp.simplify(Ff - Gm - lm*q*(p*d-a)*Y/(2*p*A*(1-r))) == 0)
+print("mu*Y bound:", sp.expand(mu*(p*b-q*a) + a*(q*b-p*d) - p*(a**2 + 2*q*a*d + q*d**2)) == 0)

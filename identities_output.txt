@@ -8,3 +8,5 @@ D: True
 ratio-1: True
 D coeffs*p^2: [-p**2*(p - 1)**2*(rho - 2), 2*p*(p - 1)*(p**2*rho + rho - 2), (p*rho - 1)*(p**2*rho - p*rho + rho - 2)]
 boundary: True
+FCFS-Gittins: True
+mu*Y bound: True
