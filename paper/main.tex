@@ -42,7 +42,8 @@ M-SERPT to that of Gittins is $C_2=1.06017342\ldots$, an algebraic number
 defined through the root in $(0,1)$ of $t^5+4t^4-20t^3+12t^2+16t-8$. It
 is approached at a load of about $0.686$, as the larger of the two sizes decreases to
 the largest value at which FCFS order is optimal, and it is
-not attained. For SERPT the corresponding supremum is
+not attained. For SERPT (shortest expected remaining processing time)
+the corresponding supremum is
 $(7-2\sqrt2)/4=1.04289\ldots$. Both results rest on an exact formula for
 the excess of the mean response time over that of Gittins.
 \end{abstract}
@@ -61,7 +62,7 @@ Among such policies the Gittins policy, named after Gittins~\cite{Git89},
 minimizes the mean response time; a proof in full generality, with a review
 of the earlier proofs, is \cite[Theorem~V.1 and Section~II]{SH21}. Under the policy of shortest expected
 remaining processing time (SERPT) the rank of a job is its expected
-remaining size~\cite[Definition~2.2]{SHS20}, and Scully, Harchol-Balter and Scheller-Wolf
+remaining size~\cite[Definition~2.2]{SHS20}. Scully, Harchol-Balter and Scheller-Wolf
 \cite{SHS20} proposed monotonic SERPT (M-SERPT), whose rank is the
 running maximum of the SERPT rank over the ages already reached. They bounded
 the ratio of the mean response time of M-SERPT to that of Gittins by a
@@ -83,20 +84,23 @@ factor $2$ under conditions on the tail of the size law
 \cite[Theorem~3.2]{SGH21}.
 
 For M-SERPT in the single-server M/G/1 queue the supremum of the ratio over
-all size laws therefore lies between $2$ and $5$, and its value remains open. The Gittins rank has no closed form in
-general; for two-point laws it has one. The SOAP formula gives the mean
-response time of one policy at one size law, and Scully, Harchol-Balter and
-Scheller-Wolf evaluate it on the law that takes the sizes $2$ and $14$ with
-equal probability \cite[Section~6.4]{SHS18}. The three policies have
-different rank functions, so the formula gives a separate expression in the
-size law and the load for each, and the supremum of the ratio over all
-two-point laws and all loads is that of a quotient of two such expressions
-over four parameters. For two-point laws the three policies belong to one
-family of policies whose mean response time is a quadratic in one
-parameter, and this reduces the problem to a maximization in two
-variables. The supremum for M-SERPT is $C_2=1.06017\ldots$ (Theorem~\ref{thm:ms}), so the
-ratio $2$ of the three-point family of \cite[Section~7]{SHS20} is not
-approached by two-point laws.
+all size laws therefore lies between $2$ and $5$, and its value remains open. A bound valid for every size law, such as
+the factor $5$ of~\cite[Theorem~5.1]{SHS20}, does not give the supremum on
+a smaller class of laws. On two-point laws the Gittins rank has a closed
+form, and the SOAP formula gives the mean response time of each policy;
+Scully, Harchol-Balter and Scheller-Wolf evaluate it on the law that takes
+the sizes $2$ and $14$ with equal probability \cite[Section~6.4]{SHS18}.
+Evaluated policy by policy, the formula gives a different rational function
+of the two sizes, their probabilities and the load for each policy, and the
+supremum of a quotient of two of them cannot be read off. On two-point laws
+the three policies have the mean response times of members of one family
+of policies, whose excess over Gittins is a quadratic in one parameter. For
+M-SERPT the excess does not depend on the larger size, while the mean
+response time under Gittins increases with it, and this reduces the
+problem to a maximization in two variables. The supremum for M-SERPT is
+$C_2=1.06017\ldots$, the subscript recalling the two sizes
+(Theorem~\ref{thm:ms}), so the ratio $2$ of the three-point family
+of~\cite[Section~7]{SHS20} is not approached by two-point laws.
 
 Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$
 with $0<a<b$ and $0<p<1$, and write $d=b-a$ and $\mu=\E X=a+qd$; a job of size $a$ is \emph{short} and a job of
@@ -138,7 +142,10 @@ F(t)=t^5+4t^4-20t^3+12t^2+16t-8 .
 \end{equation}
 For SERPT, at fixed $p$ and $\rho$, the excess and
 $\E T_{\mathrm G}$ grow at the same rate in $b$, and the supremum is the
-limit $b/a\to\infty$.
+limit $b/a\to\infty$. What this paper adds is the
+identity~\eqref{eq:regret-intro} and the two sharp constants; the SOAP
+formula, the Gittins rank and the three policies are those
+of~\cite{SHS18,SHS20}.
 
 \begin{theorem}\label{thm:ms}
 Let ties in rank be broken in FCFS order. The polynomial $F$ of \eqref{eq:F} has exactly one root $t_*$ in
@@ -255,18 +262,18 @@ that do not use the future \cite{RSY90} (see also \cite[Section~1]{SHS20}).
 
 The SOAP formula \cite[Theorem~5.5]{SHS18} is as follows. Fix a rank function $r$ and a job size $x$, and let
 $r^{\mathrm{worst}}(u)=\sup_{u\le v<x}r(v)$ be the worst future rank of a
-job of size $x$ at age $u$. For a rank $\vartheta$, the \emph{new work}
-$c^{\mathrm{new}}[\vartheta]$ of a job is the service it receives before its
-rank first becomes at least $\vartheta$, and $\rho^{\mathrm{new}}[\vartheta]
-=\lambda\E c^{\mathrm{new}}[\vartheta]$. This is the work that a later arrival
-can do ahead of a job whose worst future rank is $\vartheta$. The \emph{old
-work} of a job relative to $\vartheta$ consists of the intervals of age on
-which its rank is at most $\vartheta$. The first is the original interval
-$X^{\mathrm{old}}_0[\vartheta]$, from age $0$ until the rank first exceeds
-$\vartheta$. The others are the recycled intervals
-$X^{\mathrm{old}}_i[\vartheta]$, $i\ge1$, on which the rank returns to at
-most $\vartheta$. Put
-$\rho^{\mathrm{old}}_0[\vartheta]=\lambda\E X^{\mathrm{old}}_0[\vartheta]$. Then,
+job of size $x$ at age $u$. For a rank $\kappa$, the \emph{new work}
+$c^{\mathrm{new}}[\kappa]$ of a job is the service it receives before its
+rank first becomes at least $\kappa$, and $\rho^{\mathrm{new}}[\kappa]
+=\lambda\E c^{\mathrm{new}}[\kappa]$. This is the work that a later arrival
+can do ahead of a job whose worst future rank is $\kappa$. The \emph{old
+work} of a job relative to $\kappa$ consists of the intervals of age on
+which its rank is at most $\kappa$. The first is the original interval
+$X^{\mathrm{old}}_0[\kappa]$, from age $0$ until the rank first exceeds
+$\kappa$. The others are the recycled intervals
+$X^{\mathrm{old}}_i[\kappa]$, $i\ge1$, on which the rank returns to at
+most $\kappa$. Put
+$\rho^{\mathrm{old}}_0[\kappa]=\lambda\E X^{\mathrm{old}}_0[\kappa]$. Then,
 with $\theta=r^{\mathrm{worst}}(0)$,
 \begin{equation}\label{eq:soap}
 \E[T\mid X=x]=\frac{\lambda\sum_{i\ge0}\E\bigl(X^{\mathrm{old}}_i[\theta]\bigr)^2}
@@ -302,8 +309,10 @@ stage of length $d-w>0$, which later arrivals preempt. Last comes a
 protected tail of length $w$, which once begun runs to completion.
 Two long jobs in their middle stages are served in FCFS order. Under
 M-SERPT both have rank $d$ and the tie goes to the earlier arrival. Under
-Gittins and SERPT the earlier arrival is at least as old, so its rank $b-u$
-is no larger, and at equal ages the tie goes to the earlier arrival. For $0\le w<d$ let $\pi_w$ be the policy with the rank function equal to
+Gittins and SERPT the earlier arrival is at least as old: this holds when
+the later one enters its middle stage, at age $a$, and it is kept because
+the server works on the older of the two. So the rank $b-u$ of the earlier
+arrival is no larger, and at equal ages the tie goes to the earlier arrival. For $0\le w<d$ let $\pi_w$ be the policy with the rank function equal to
 $1$ on $[0,a)$, to $2$ on $[a,b-w)$ and to $0$ on $[b-w,b)$. It satisfies
 the hypotheses of Lemma~\ref{lem:means} below with $r_0=1$, and it treats
 every job in the three stages above, as described in the introduction.
@@ -324,8 +333,8 @@ rank at most $r_0$ on $[0,a)$, rank above $r_0$ on $[a,b-w)$ and rank at most
 $r_0$ on $[b-w,b)$. So $X^{\mathrm{old}}_0[r_0]=a$, there is one recycled
 interval, of length $w$ for a long job and $0$ for a short one, and
 $\rho^{\mathrm{old}}_0[r_0]=\lambda a$. A later arrival starts at rank
-$r_0$, so $c^{\mathrm{new}}[r_0]=0$; likewise $c^{\mathrm{new}}[\vartheta]=0$ for
-every $\vartheta\le r_0$, and $r^{\mathrm{worst}}(u)\le r_0$ on $[0,a)$.
+$r_0$, so $c^{\mathrm{new}}[r_0]=0$; likewise $c^{\mathrm{new}}[\kappa]=0$ for
+every $\kappa\le r_0$, and $r^{\mathrm{worst}}(u)\le r_0$ on $[0,a)$.
 Formula \eqref{eq:soap} gives $\lambda(a^2+qw^2)/(2A)+a$.
 
 Take $x=b$. Since $w<d$, the age $a$ lies in $[a,b-w)$, so
@@ -333,7 +342,7 @@ $\theta=r^{\mathrm{worst}}(0)=r(a)>r_0$ and every age of an earlier job has
 rank at most $r(a)$. Hence $X^{\mathrm{old}}_0[\theta]=X$, there is no
 recycled interval, and $\rho^{\mathrm{old}}_0[\theta]=\rho$. A later
 arrival has rank at most $r_0$ during its first $a$ units and rank $r(a)$ at
-age $a$, so $c^{\mathrm{new}}[\vartheta]=a$ for every $\vartheta\in(r_0,r(a)]$.
+age $a$, so $c^{\mathrm{new}}[\kappa]=a$ for every $\kappa\in(r_0,r(a)]$.
 For $u<b-w$ the worst future rank $r^{\mathrm{worst}}(u)$ lies in
 $(r_0,r(a)]$, and the integrand in \eqref{eq:soap} is $1/A$; for $u\ge b-w$
 it is at most $r_0$, and the integrand is $1$. Formula \eqref{eq:soap} gives
@@ -546,7 +555,7 @@ box gives the digits of $C_2$ in Theorem~\ref{thm:ms}.
 Along the family of Theorem~\ref{thm:ms} the ratio
 $\E T_{\mathrm{MS}}/\E T_{\mathrm G}$ is $1.055082$, $1.060121$ and
 $1.060173370$ at $\varepsilon=10^{-1}$, $10^{-3}$ and $10^{-6}$. Along the
-family of Theorem~\ref{thm:s} with $d=10$, $10^3$ and $10^6$ the ratio
+family of Theorem~\ref{thm:s} with $a=1$, $p=1/2$, $\rho=2-\sqrt2$ and $d=10$, $10^3$ and $10^6$ the ratio
 $\E T_{\mathrm S}/\E T_{\mathrm G}$ is $1.0205$, $1.04259$ and
 $1.0428929$.
 
@@ -562,7 +571,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 
 \section*{Declaration of generative AI and AI-assisted technologies}
 
-This paper is part of a broader research project on proving open problems with AI systems. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The Gittins policy is named after Gittins~\cite{Git89}. Its optimality in the M/G/1 queue has several earlier proofs, which Scully and Harchol-Balter review before giving a proof in full generality~\cite[Theorem~V.1 and Section~II]{SH21}. The optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. What this paper adds is the identity of Proposition~\ref{prop:regret} and the two sharp constants. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+This paper is part of a broader research project on proving open problems with AI systems. OpenAI's Codex (GPT-6.1) proposed and proved Theorems~\ref{thm:ms} and~\ref{thm:s} and Proposition~\ref{prop:regret} and wrote \texttt{verify.py} and the simulations, and a separate Codex run (GPT-6.1) audited the proofs with its own computations. Anthropic's Claude (Opus~5.5) re-derived the conditional means from the SOAP formula, the identity of Proposition~\ref{prop:regret}, formula \eqref{eq:boundary} and the bound of Section~\ref{sec:s}. It also wrote \texttt{identities\_check.py}, reran \texttt{verify.py}, and wrote the text. The SOAP formula and the analysis of the sizes $2$ and $14$ are due to Scully, Harchol-Balter and Scheller-Wolf~\cite{SHS18}. M-SERPT, its factor-$5$ bound and the three-point family are due to the same authors~\cite{SHS20}. The factor-$2$ conjecture is theirs~\cite{SHS20} and, for SERPT as well, Scully's~\cite{Scu22}. The Gittins policy is named after Gittins~\cite{Git89}. Its optimality in the M/G/1 queue has several earlier proofs, which Scully and Harchol-Balter review before giving a proof in full generality~\cite[Theorem~V.1 and Section~II]{SH21}. The optimality of FCFS for size laws that are new better than used in expectation is due to Righter, Shanthikumar and Yamazaki~\cite{RSY90}. The coincidence of Gittins with FCFS for such laws is credited in~\cite{SHS20} to Aalto, Ayesta and Righter~\cite{AAR09}, and the same fact for M-SERPT is deduced there from their~\cite[Proposition~9]{AAR11}. All of these results are due to the authors cited. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data and code availability}
 
@@ -600,7 +609,7 @@ scheduling with unknown job sizes in heavy traffic}, Perform. Eval.
 
 \bibitem{SH21}
 Z.~Scully and M.~Harchol-Balter, \emph{The Gittins policy in the M/G/1
-queue}, arXiv:2111.10703, 2021.
+queue}, WiOpt 2021; extended version arXiv:2111.10703, 2021.
 
 \bibitem{SHS18}
 Z.~Scully, M.~Harchol-Balter and A.~Scheller-Wolf, \emph{SOAP: one clean
