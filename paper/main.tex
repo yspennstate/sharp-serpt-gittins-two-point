@@ -44,7 +44,7 @@ is approached at a load of about $0.686$, as the larger of the two sizes decreas
 the largest value at which FCFS order is optimal, and it is
 not attained. For SERPT (shortest expected remaining processing time)
 the corresponding supremum is
-$(7-2\sqrt2)/4=1.04289\ldots$. Both results rest on an exact formula for
+$C_2^{\mathrm S}=(7-2\sqrt2)/4=1.04289\ldots$. Both results rest on an exact formula for
 the excess of the mean response time over that of Gittins.
 \end{abstract}
 
@@ -93,11 +93,10 @@ the sizes $2$ and $14$ with equal probability \cite[Section~6.4]{SHS18}.
 Evaluated policy by policy, the formula gives a different rational function
 of the two sizes, their probabilities and the load for each policy, and the
 supremum of a quotient of two of them cannot be read off. On two-point laws
-the three policies have the mean response times of members of one family
-of policies, whose excess over Gittins is a quadratic in one parameter. For
-M-SERPT the excess does not depend on the larger size, while the mean
-response time under Gittins increases with it, and this reduces the
-problem to a maximization in two variables. The supremum for M-SERPT is
+the three policies schedule jobs as members of one family of policies, and
+the excess over Gittins along the family is a quadratic in one parameter;
+for M-SERPT this reduces the problem to a maximization in two variables.
+The supremum for M-SERPT is
 $C_2=1.06017\ldots$, the subscript recalling the two sizes
 (Theorem~\ref{thm:ms}), so the ratio $2$ of the three-point family
 of~\cite[Section~7]{SHS20} is not approached by two-point laws.
@@ -178,7 +177,7 @@ $\mu$, and every later arrival preempts it (compare Remark~\ref{rem:ties}).
 \begin{theorem}\label{thm:s}
 Let ties in rank be broken in FCFS order. Over the same parameters,
 \[
-\sup\frac{\E T_{\mathrm S}}{\E T_{\mathrm G}}=\frac{7-2\sqrt2}{4}
+\sup\frac{\E T_{\mathrm S}}{\E T_{\mathrm G}}=C_2^{\mathrm S}=\frac{7-2\sqrt2}{4}
 =1.04289\,32188\ldots .
 \]
 The supremum is approached with $p=1/2$, $\rho=2-\sqrt2$ and
