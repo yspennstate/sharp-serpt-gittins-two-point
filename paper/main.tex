@@ -160,14 +160,15 @@ attained.
 Numerically $t_*=0.45061\,45807\ldots$ and $p_*=0.65713\,91408\ldots$, and
 along the family of Theorem~\ref{thm:ms} the load tends to $t_*/p_*=0.68572\,17182\ldots$.
 The extremal parameters thus have a moderate load and lie at the
-boundary of the region where FCFS is optimal. Along this family the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
+boundary of the region where FCFS is optimal (Lemma~\ref{lem:fcfs} and
+Remark~\ref{rem:fcfs}). Along this family the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
 $p(b-a)=a$. The jump comes from tie breaking. At $p(b-a)=a$ the M-SERPT
 rank of a long job past age $a$ equals $\E X$, the rank of a waiting job,
 so FCFS tie breaking lets it finish. For $p(b-a)>a$ its rank exceeds
 $\E X$, and every later arrival preempts it (compare Remark~\ref{rem:ties}).
 
 \begin{theorem}\label{thm:s}
-Over the same parameters,
+Let ties in rank be broken in FCFS order. Over the same parameters,
 \[
 \sup\frac{\E T_{\mathrm S}}{\E T_{\mathrm G}}=\frac{7-2\sqrt2}{4}
 =1.04289\,32188\ldots .
@@ -213,8 +214,8 @@ the Gittins index, is, written with conditional expectations,
 r_{\mathrm G}(u)=\inf_{v>u}\frac{\E[\min(X,v)-u\mid X>u]}{\PP(X\le v\mid X>u)} .
 \]
 For a two-point law only $v=a$ and $v=b$ need to be considered, since a
-value of $v$ strictly between $a$ and $b$ or beyond $b$ adds service without
-adding completions. Hence $r_{\mathrm G}(u)=\min\{(a-u)/p,\ \mu-u\}$ for
+value of $v$ strictly between $a$ and $b$ adds service without adding
+completions, and a value beyond $b$ gives the same quotient as $v=b$. Hence $r_{\mathrm G}(u)=\min\{(a-u)/p,\ \mu-u\}$ for
 $0\le u<a$ and $r_{\mathrm G}(u)=b-u$ for $a\le u<b$.
 
 Since $\E[X-u\mid X>u]$ equals $\mu-u$ for $0\le u<a$ and $b-u$ for
@@ -245,7 +246,8 @@ FCFS order.
 
 By the lemma and the optimality of Gittins \cite[Theorem~V.1]{SH21}, FCFS
 minimizes the mean response time for these two-point laws among the
-policies considered here. Righter, Shanthikumar and Yamazaki
+policies considered here; by Remark~\ref{rem:fcfs} it does not when
+$pd>a$. Righter, Shanthikumar and Yamazaki
 proved more: for size laws that are new better than used in expectation,
 FCFS minimizes the mean response time among work-conserving policies
 that do not use the future \cite{RSY90} (see also \cite[Section~1]{SHS20}).
@@ -294,7 +296,7 @@ In each case the rank on $[0,a)$ is at most its value $r_0$ at age $0$.
 On $[a,b)$ the rank is nonincreasing; it exceeds $r_0$ up to some age $b-w$
 and is at most $r_0$ from then on. Here $r_0=\mu$ and $w=0$ for M-SERPT,
 $r_0=h$ and $w=h$ for Gittins, and $r_0=\mu$ and $w=\mu$ for SERPT.
-A job therefore has three stages. The initial stage has length $a$ and is
+A long job therefore has three stages; a short job has only the first. The initial stage has length $a$ and is
 served in FCFS order ahead of every long job in its middle stage. A long job then has a middle
 stage of length $d-w>0$, which later arrivals preempt. Last comes a
 protected tail of length $w$, which once begun runs to completion.
@@ -307,7 +309,7 @@ the hypotheses of Lemma~\ref{lem:means} below with $r_0=1$, and it treats
 every job in the three stages above, as described in the introduction.
 
 \begin{lemma}\label{lem:means}
-Let $0\le w<d$ and $r_0\ge0$. Let $r$ be a rank function with $r(u)\le r(0)=r_0$
+Let $0\le w<d$ and $r_0\in\mathbb R$. Let $r$ be a rank function with $r(u)\le r(0)=r_0$
 on $[0,a)$, nonincreasing on $[a,b)$, with $r(u)>r_0$ for $a\le u<b-w$ and
 $r(u)\le r_0$ for $b-w\le u<b$. Then
 \[
@@ -370,6 +372,25 @@ above; all three values of $w$ lie in $[0,d)$.
 
 The restriction $w<d$ cannot be dropped: at $w=d$ the middle stage
 disappears, the policy is FCFS, and \eqref{eq:Tw} no longer applies.
+
+\begin{remark}[FCFS for $pd>a$]\label{rem:fcfs}
+FCFS is not optimal when $pd>a$. Write $T_{\mathrm{FCFS}}$ for the response
+time under FCFS, the policy with a constant rank function. For it
+\eqref{eq:soap} has $X^{\mathrm{old}}_0[\theta]=X$, no recycled interval and
+$c^{\mathrm{new}}[\theta]=0$, so
+$\E T_{\mathrm{FCFS}}=\mu+\lambda\E X^2/(2(1-\rho))$. With
+$\E T_{\mathrm G}=m(h)$ from \eqref{eq:Tw}, a computation (checked in
+Section~\ref{sec:computations}) gives
+\[
+\E T_{\mathrm{FCFS}}-\E T_{\mathrm G}=\frac{\lambda q(pd-a)\,Y}{2pA(1-\rho)},
+\qquad Y=pb-qa+\lambda a(qb-pd).
+\]
+Here $Y>0$. If $qb\ge pd$, then $Y\ge pb-qa=(pd-a)+2pa>0$. If $qb<pd$, then
+$\lambda a<a/\mu$ because $\rho<1$, so
+$\mu Y>\mu(pb-qa)+a(qb-pd)=p(a^2+2qad+qd^2)>0$. Together with
+Lemma~\ref{lem:fcfs}, for fixed $a$ and $p$ the value $b=a+a/p$ is the
+largest at which FCFS is optimal.
+\end{remark}
 
 \section{Proof of Theorem~\ref{thm:ms}}\label{sec:ms}
 
@@ -515,8 +536,9 @@ ratio tends to $2/(2-\rho)$.
 The derivatives of $N/D$, the resultant \eqref{eq:res} and the
 coefficients of $\mathcal D$ are computed with exact computer algebra,
 and $C_2$ is enclosed with rational interval arithmetic. The identities
-are verified over the integers by \texttt{verify.py} and
-\texttt{identities\_check.py}. The scripts use SymPy
+are verified as polynomial identities with integer coefficients by \texttt{verify.py} and
+\texttt{identities\_check.py}; the second also checks the display of
+Remark~\ref{rem:fcfs} and the identity used for $\mu Y$ there. The scripts use SymPy
 \cite{SymPy} for the symbolic steps and the \texttt{fractions} module of
 the Python standard library for the rational arithmetic, and run under Python~3.14 and SymPy~1.14. For the enclosure of $C_2$, $F$
 changes sign between two rationals at distance $2\cdot10^{-30}$, which
@@ -550,7 +572,7 @@ This paper is part of a broader research project on proving open problems with A
 
 The scripts \texttt{verify.py} and \texttt{identities\_check.py}, with
 their outputs, are available at
-\url{https://github.com/yspennstate/sharp-serpt-gittins-two-point/tree/f14f52776486c7ae3202df2fb95564636162a738}. The
+\url{https://github.com/yspennstate/sharp-serpt-gittins-two-point/tree/b19f2dd3cb3413fe47763d2c55de8534509754ed}. The
 same repository holds \texttt{simulation\_results.jsonl}, which compares
 the exact means with discrete-event simulations at five parameter points.
 
