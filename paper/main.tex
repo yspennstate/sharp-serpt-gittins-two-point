@@ -84,9 +84,7 @@ factor $2$ under conditions on the tail of the size law
 \cite[Theorem~3.2]{SGH21}.
 
 For M-SERPT in the single-server M/G/1 queue the supremum of the ratio over
-all size laws therefore lies between $2$ and $5$, and its value remains open. A bound valid for every size law, such as
-the factor $5$ of~\cite[Theorem~5.1]{SHS20}, does not give the supremum on
-a smaller class of laws. On two-point laws the Gittins rank has a closed
+all size laws therefore lies between $2$ and $5$, and its value remains open. On two-point laws the Gittins rank has a closed
 form, and the SOAP formula gives the mean response time of each policy;
 Scully, Harchol-Balter and Scheller-Wolf evaluate it on the law that takes
 the sizes $2$ and $14$ with equal probability \cite[Section~6.4]{SHS18}.
@@ -97,7 +95,7 @@ the three policies schedule jobs as members of one family of policies, and
 the excess over Gittins along the family is a quadratic in one parameter;
 for M-SERPT this reduces the problem to a maximization in two variables.
 The supremum for M-SERPT is
-$C_2=1.06017\ldots$, the subscript recalling the two sizes
+$C_2=1.06017\ldots$
 (Theorem~\ref{thm:ms}), so the ratio $2$ of the three-point family
 of~\cite[Section~7]{SHS20} is not approached by two-point laws.
 
@@ -174,7 +172,8 @@ so FCFS tie breaking lets it finish. For $pd>a$ its rank exceeds
 $\mu$, and every later arrival preempts it (compare Remark~\ref{rem:ties}).
 
 \begin{theorem}\label{thm:s}
-Let ties in rank be broken in FCFS order. Over the same parameters,
+Let ties in rank be broken in FCFS order. With the supremum taken over
+all $0<a<b$, $p\in(0,1)$ and $\lambda>0$ with $\rho<1$,
 \[
 \sup\frac{\E T_{\mathrm S}}{\E T_{\mathrm G}}=C_2^{\mathrm S}=\frac{7-2\sqrt2}{4}
 =1.04289\,32188\ldots .
@@ -312,8 +311,9 @@ the later one enters its middle stage, at age $a$, and it is kept because
 the server works on the older of the two. So the rank $b-u$ of the earlier
 arrival is no larger, and at equal ages the tie goes to the earlier arrival. For $0\le w<d$ let $\pi_w$ be the policy with the rank function equal to
 $1$ on $[0,a)$, to $2$ on $[a,b-w)$ and to $0$ on $[b-w,b)$. It satisfies
-the hypotheses of Lemma~\ref{lem:means} below with $r_0=1$, and it treats
-every job in the three stages above, as described in the introduction.
+the hypotheses of Lemma~\ref{lem:means} below with $r_0=1$, and for
+$w=0$, $h$ and $\mu$ it serves jobs in the same order as M-SERPT, Gittins
+and SERPT respectively.
 
 \begin{lemma}\label{lem:means}
 Let $0\le w<d$ and $r_0\in\mathbb R$. Let $r$ be a rank function with $r(u)\le r(0)=r_0$
