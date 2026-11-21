@@ -94,28 +94,28 @@ two-point laws and all loads is that of a quotient of two such expressions
 over four parameters. For two-point laws the three policies belong to one
 family of policies whose mean response time is a quadratic in one
 parameter, and this reduces the problem to a maximization in two
-variables. The supremum for M-SERPT is $C_2=1.0602\ldots$ (Theorem~\ref{thm:ms}), so the
+variables. The supremum for M-SERPT is $C_2=1.06017\ldots$ (Theorem~\ref{thm:ms}), so the
 ratio $2$ of the three-point family of \cite[Section~7]{SHS20} is not
 approached by two-point laws.
 
 Let $\PP(X=a)=p$ and $\PP(X=b)=q=1-p$
-with $0<a<b$ and $0<p<1$; a job of size $a$ is \emph{short} and a job of
+with $0<a<b$ and $0<p<1$, and write $d=b-a$ and $\mu=\E X=a+qd$; a job of size $a$ is \emph{short} and a job of
 size $b$ is \emph{long}. Write $T(\pi)$ for the response time in steady
 state under a policy $\pi$, and
 $T_{\mathrm G}$, $T_{\mathrm{MS}}$ and $T_{\mathrm S}$ for the response
 time under Gittins, M-SERPT and SERPT; ties in rank are
-broken in first-come first-served (FCFS) order. If $p(b-a)\le a$, the
+broken in first-come first-served (FCFS) order. If $pd\le a$, the
 three policies serve jobs in FCFS order and the ratio is $1$
-(Lemma~\ref{lem:fcfs}). Suppose $p(b-a)>a$. For $0\le w<b-a$ the policy $\pi_w$, defined in
+(Lemma~\ref{lem:fcfs}). Suppose $pd>a$. For $0\le w<d$ the policy $\pi_w$, defined in
 Section~\ref{sec:means} by a rank function, splits every job into stages.
 The \emph{initial stage}, the first $a$ units of service, is served in
 FCFS order. The last $w$ units of a long job form its \emph{protected
 tail}, which once begun runs to completion. The \emph{middle stage}
-between them, of length $b-a-w$, is given to long jobs in FCFS
+between them, of length $d-w$, is given to long jobs in FCFS
 order, and a later arrival preempts it. The initial stage of a job is
 served ahead of all other work except a protected tail already begun. Gittins, M-SERPT and
 SERPT schedule jobs exactly as $\pi_w$ does with $w=a/p$, $w=0$ and
-$w=\E X$ (Section~\ref{sec:means}), so one computation with the SOAP
+$w=\mu$ (Section~\ref{sec:means}), so one computation with the SOAP
 formula \cite[Theorem~5.5]{SHS18} compares all three. Their mean response
 times are values of one quadratic in $w$, least at $w=a/p$
 (Proposition~\ref{prop:regret}):
@@ -126,7 +126,7 @@ times are values of one quadratic in $w$, least at $w=a/p$
 For M-SERPT the excess $\lambda qa^2/(2p(1-\lambda a))$ does not depend on
 $b$, while for fixed $a$, $p$ and $\lambda$ the mean $\E T_{\mathrm G}$
 increases with $b$, so the supremum is approached in the limit
-$p(b-a)\downarrow a$. There the ratio becomes $1+f(p,t)$ with
+$pd\downarrow a$. There the ratio becomes $1+f(p,t)$ with
 $t=\lambda a$, where
 \begin{equation}\label{eq:f}
 f(p,t)=\frac{t(1-p)(p-t)}{(1-t)\bigl(2p-(1-p+p^2)t\bigr)},
@@ -162,11 +162,11 @@ Numerically $t_*=0.45061\,45807\ldots$ and $p_*=0.65713\,91408\ldots$, and
 along the family of Theorem~\ref{thm:ms} the load tends to $t_*/p_*=0.68572\,17182\ldots$.
 The extremal parameters thus have a moderate load and lie at the
 boundary of the region where FCFS is optimal (Lemma~\ref{lem:fcfs} and
-Remark~\ref{rem:fcfs}). Along this family the ratio tends to $C_2$ as $p(b-a)\downarrow a$ and equals $1$ at
-$p(b-a)=a$. The ratio is discontinuous at $p(b-a)=a$ because of the tie rule. There the M-SERPT
-rank of a long job past age $a$ equals $\E X$, the rank of a waiting job,
-so FCFS tie breaking lets it finish. For $p(b-a)>a$ its rank exceeds
-$\E X$, and every later arrival preempts it (compare Remark~\ref{rem:ties}).
+Remark~\ref{rem:fcfs}). Along this family the ratio tends to $C_2$ as $pd\downarrow a$ and equals $1$ at
+$pd=a$. The ratio is discontinuous at $pd=a$ because of the tie rule. There the M-SERPT
+rank of a long job past age $a$ equals $\mu$, the rank of a waiting job,
+so FCFS tie breaking lets it finish. For $pd>a$ its rank exceeds
+$\mu$, and every later arrival preempts it (compare Remark~\ref{rem:ties}).
 
 \begin{theorem}\label{thm:s}
 Let ties in rank be broken in FCFS order. Over the same parameters,
@@ -198,9 +198,9 @@ and~\ref{thm:s} and the digits of $C_2$.
 A policy of the kind considered here assigns to a job of age $u$ a
 \emph{rank} $r(u)$ and always serves the job of least rank, breaking ties
 in FCFS order. Throughout, $X$ takes the values $a<b$ with probabilities
-$p$ and $q=1-p$, and we write
+$p$ and $q=1-p$, $d=b-a$ and $\mu=\E X=a+qd$ as in the introduction, and we write
 \[
-d=b-a,\qquad \mu=\E X=a+qd,\qquad A=1-\lambda a,\qquad
+A=1-\lambda a,\qquad
 B=\frac{\lambda\E X^2}{2(1-\rho)A}.
 \]
 Since $\lambda a\le\rho<1$, all of $A$, $1-\rho$ and $B$ are positive.
@@ -214,10 +214,10 @@ the Gittins index, is, written with conditional expectations,
 \[
 r_{\mathrm G}(u)=\inf_{v>u}\frac{\E[\min(X,v)-u\mid X>u]}{\PP(X\le v\mid X>u)} .
 \]
-For a two-point law only $v=a$ and $v=b$ need to be considered: for
-$u<v<a$ no job completes and the quotient is $+\infty$, a
+For a two-point law only $v=a$ and $v=b$ need to be considered. For
+$u<v<a$ no job completes and the quotient is $+\infty$; a
 value of $v$ strictly between $a$ and $b$ adds service without adding
-completions, and a value beyond $b$ gives the same quotient as $v=b$. Hence $r_{\mathrm G}(u)=\min\{(a-u)/p,\ \mu-u\}$ for
+completions; a value beyond $b$ gives the same quotient as $v=b$. Hence $r_{\mathrm G}(u)=\min\{(a-u)/p,\ \mu-u\}$ for
 $0\le u<a$ and $r_{\mathrm G}(u)=b-u$ for $a\le u<b$.
 
 Since $\E[X-u\mid X>u]$ equals $\mu-u$ for $0\le u<a$ and $b-u$ for
@@ -253,21 +253,20 @@ proved more: for size laws that are new better than used in expectation,
 FCFS minimizes the mean response time among work-conserving policies
 that do not use the future \cite{RSY90} (see also \cite[Section~1]{SHS20}).
 
-We now recall the SOAP formula \cite[Theorem~5.5]{SHS18} in the form we
-need. Fix a rank function $r$ and a job size $x$, and let
+The SOAP formula \cite[Theorem~5.5]{SHS18} is as follows. Fix a rank function $r$ and a job size $x$, and let
 $r^{\mathrm{worst}}(u)=\sup_{u\le v<x}r(v)$ be the worst future rank of a
-job of size $x$ at age $u$. For a rank $\theta$, the \emph{new work}
-$c^{\mathrm{new}}[\theta]$ of a job is the service it receives before its
-rank first becomes at least $\theta$, and $\rho^{\mathrm{new}}[\theta]
-=\lambda\E c^{\mathrm{new}}[\theta]$. This is the work that a later arrival
-can do ahead of a job whose worst future rank is $\theta$. The \emph{old
-work} of a job relative to $\theta$ consists of the intervals of age on
-which its rank is at most $\theta$. The first is the original interval
-$X^{\mathrm{old}}_0[\theta]$, from age $0$ until the rank first exceeds
-$\theta$. The others are the recycled intervals
-$X^{\mathrm{old}}_i[\theta]$, $i\ge1$, on which the rank returns to at
-most $\theta$. Put
-$\rho^{\mathrm{old}}_0[\theta]=\lambda\E X^{\mathrm{old}}_0[\theta]$. Then,
+job of size $x$ at age $u$. For a rank $\vartheta$, the \emph{new work}
+$c^{\mathrm{new}}[\vartheta]$ of a job is the service it receives before its
+rank first becomes at least $\vartheta$, and $\rho^{\mathrm{new}}[\vartheta]
+=\lambda\E c^{\mathrm{new}}[\vartheta]$. This is the work that a later arrival
+can do ahead of a job whose worst future rank is $\vartheta$. The \emph{old
+work} of a job relative to $\vartheta$ consists of the intervals of age on
+which its rank is at most $\vartheta$. The first is the original interval
+$X^{\mathrm{old}}_0[\vartheta]$, from age $0$ until the rank first exceeds
+$\vartheta$. The others are the recycled intervals
+$X^{\mathrm{old}}_i[\vartheta]$, $i\ge1$, on which the rank returns to at
+most $\vartheta$. Put
+$\rho^{\mathrm{old}}_0[\vartheta]=\lambda\E X^{\mathrm{old}}_0[\vartheta]$. Then,
 with $\theta=r^{\mathrm{worst}}(0)$,
 \begin{equation}\label{eq:soap}
 \E[T\mid X=x]=\frac{\lambda\sum_{i\ge0}\E\bigl(X^{\mathrm{old}}_i[\theta]\bigr)^2}
@@ -353,7 +352,7 @@ m(w)=p\Bigl(a+\frac{\lambda(a^2+qw^2)}{2A}\Bigr)+q\Bigl(B+\frac{b-w}{A}+w\Bigr).
 \begin{proposition}\label{prop:regret}
 Suppose $pd>a$. For $0\le w<d$,
 \[
-m(w)-\E T_{\mathrm G}=\frac{\lambda pq}{2A}\Bigl(w-\frac ap\Bigr)^2 .
+m(w)-\E T_{\mathrm G}=\frac{\lambda pq}{2A}(w-h)^2 .
 \]
 In particular
 \begin{equation}\label{eq:gaps}
@@ -524,7 +523,7 @@ and tends to $2$ as $\rho\to1$. Two-point laws come arbitrarily close to
 the same ratio $2/(2-\rho)$ under this tie rule. If $pd<a$, the M-SERPT rank is the
 constant $\mu$ on $[0,b)$ (proof of Lemma~\ref{lem:fcfs}), so with
 preemptive last-come first-served ties its mean response time is
-$\mu/(1-\rho)$, while Gittins never preempts the job in service and has mean response
+$\mu/(1-\rho)$. Gittins never preempts the job in service and has mean response
 time $\mu+\lambda\E X^2/(2(1-\rho))$ with either tie breaking. As $b\downarrow a$ at fixed $\rho$ the
 ratio tends to $2/(2-\rho)$.
 \end{remark}
@@ -533,12 +532,11 @@ ratio tends to $2/(2-\rho)$.
 
 \section{Computer-assisted steps}\label{sec:computations}
 
-The derivatives of $N/D$, the resultant \eqref{eq:res} and the
-coefficients of $\Delta$ are computed with exact computer algebra,
-and $C_2$ is enclosed with rational interval arithmetic. Each of these is an identity between polynomials with integer
-coefficients, checked by \texttt{verify.py} and \texttt{identities\_check.py} (Python~3.14, SymPy~1.14 \cite{SymPy}, and the
-\texttt{fractions} module for the rational arithmetic); the second script also checks the display of
-Remark~\ref{rem:fcfs} and the identity used for $\mu Y$ there. For the enclosure of $C_2$, $F$
+The identities for the derivatives of $N/D$ (Section~\ref{sec:ms}), the resultant \eqref{eq:res}, the
+coefficients of $\Delta$ (Section~\ref{sec:s}) and the display of Remark~\ref{rem:fcfs} with the identity
+for $\mu Y$ are identities of rational functions with integer coefficients. They are verified in exact
+arithmetic by \texttt{verify.py} and \texttt{identities\_check.py} (Python~3.14, SymPy~1.14 \cite{SymPy}).
+The enclosure of $C_2$ uses rational interval arithmetic (the \texttt{fractions} module). For the enclosure of $C_2$, $F$
 changes sign between $t_-=0.450614580799471903808270806938$ and $t_+=t_-+2\cdot10^{-30}$, which
 therefore contain $t_*$. For every $t\in[t_-,t_+]$, $K$ changes sign in
 $p$ between $p_-=0.6571391408919625221961487$ and $p_+=p_-+2\cdot10^{-25}$, which therefore
